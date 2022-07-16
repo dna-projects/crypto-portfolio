@@ -1,4 +1,39 @@
 {% extends "base.html" %} 
 {% block content %}
-<h1 class="text-6xl">Portfolio</h1>
+<div>
+    <!-- This div will be for the 'tabs' to switch from portfolio<>marketcap -->
+</div>
+<div class="flex flex-col">
+    <div>
+        <!-- This div will be for the balance graph -->
+    </div>
+    <table class="min-w-full text-left">
+        <thead class="bg-slate-400">
+            <tr>
+                <th class="text-2xl">Coin</th>
+                <th class="text-2xl">Price</th>
+                <th class="text-2xl">PnL</th>
+                <th class="text-2xl">Holdings</th>
+            </tr>
+        </thead>
+        <tbody class="text-2xl">
+            <!--
+            TODO - each tr will be programmatically added by the view
+            TODO - the td will be updated based on the coingecko api call
+            -->
+            <tr class="bg-slate-100 border-b">
+                <td>BTC</td>
+                <td>$20,000</td>
+            </tr>
+            <tr>
+                <td>ETH</td>
+                <td>$1,200</td>
+            </tr>
+            <tr class="bg-slate-100 border-b">
+                <td>SOL</td>
+                <td>$37</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 {% endblock content %}
