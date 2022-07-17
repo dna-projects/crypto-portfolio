@@ -1,3 +1,17 @@
-{% extends "entry-base.html" %} 
+{% extends "entry-base.html" %}
 {% block content %}
+<div class="self-center text-lg font-bold m-3">
+    Project Name
+</div>
+<form class="flex flex-col mb-0">
+    <div class="m-3">
+        <input type="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5" placeholder="Email" required> <!-- input attributes from Flowbite -->
+    </div>
+    <div class="m-3">
+        <input type="password" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5" placeholder="Password" required> <!-- input attributes from Flowbite -->
+    </div>
+    <button type="button" class=" text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center m-5">Login</button> <!-- button attributes from Flowbite -->
+</form>
+<hr className="w-full" /> <!-- Dividing line -->
+<button class="text-blue-700 mt-3"><a href="/registration">Register</a></button>
 {% endblock content %}

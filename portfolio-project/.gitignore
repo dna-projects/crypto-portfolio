@@ -1,7 +1,0 @@
-# Django #
-*.log
-*.pot
-*.pyc
-__pycache__
-*$py.class
-*.py[cod]
