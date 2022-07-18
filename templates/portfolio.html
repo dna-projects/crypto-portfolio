@@ -1,39 +1,62 @@
-{% extends "base.html" %} 
+{% extends "base.html" %}
 {% block content %}
-<div>
-    <!-- This div will be for the 'tabs' to switch from portfolio<>marketcap -->
-</div>
-<div class="flex flex-col">
-    <div>
-        <!-- This div will be for the balance graph -->
+<div class="flex flex-col items-center h-screen bg-slate-400">
+    <div class="w-1/2">
+        <div class="mt-28 ml-14">
+            <ul class="flex text-slate-900 text-xl gap-6">
+                <li>
+                    <button class="hover:underline underline-offset-8 decoration-indigo-100">Portfolio</button>
+                </li>
+                <li>
+                    <button class="hover:underline underline-offset-8 decoration-indigo-100">Marketcap</button>
+                </li>
+            </ul>
+        </div>
+        <div class="h-fit mt-6 py-12 px-10 shadow-xl rounded-xl bg-white">
+            <div class="mb-12 p-3 bg-slate-200 rounded-xl shadow-md">
+                <div class="mb-1 text-lg">
+                    Balance
+                </div>
+                <div class="mb-10 text-2xl">
+                    $1340.60
+                </div>
+            </div>
+            <div class="rounded-xl shadow-md overflow-x-auto">
+                <div class="table w-full">
+                    <div class="table-header-group bg-slate-800 text-white text-xl font-bold">
+                        <div class="table-row">
+                            <div class="table-cell pl-12">Coin</div>
+                            <div class="table-cell p-2">Price</div>
+                            <div class="table-cell p-2">PnL</div>
+                            <div class="table-cell p-2">Holdings</div>
+                        </div>
+                    </div>
+                    <div class="table-row-group text-2xl">
+                        <div class="table-row hover:bg-slate-200">
+                            <div class="table-cell p-2">🐳 BTC</div>
+                            <div class="table-cell p-2">$20,000</div>
+                            <div class="table-cell p-2">+$0.10</div>
+                            <div class="table-cell p-2">$500.20</div>
+                        </div>
+                        <div class="table-row hover:bg-slate-200">
+                            <div class="table-cell p-2">🦀 ETH</div>
+                            <div class="table-cell p-2">$1,200</div>
+                            <div class="table-cell p-2">-$0.10</div>
+                            <div class="table-cell p-2">$90.20</div>
+                        </div>
+                        <div class="table-row hover:bg-slate-200">
+                            <div class="table-cell p-2">🌋 SOL</div>
+                            <div class="table-cell p-2">$37</div>
+                            <div class="table-cell p-2">+$0.10</div>
+                            <div class="table-cell p-2">$750.20</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-center mt-10 text-lg">
+                <button class="px-4 py-1 hover:bg-gray-600 hover:text-white rounded-2xl bg-gray-800 text-slate-300">+ Add Token</button>
+            </div>
+        </div>
     </div>
-    <table class="min-w-full text-left">
-        <thead class="bg-slate-400">
-            <tr>
-                <th class="text-2xl">Coin</th>
-                <th class="text-2xl">Price</th>
-                <th class="text-2xl">PnL</th>
-                <th class="text-2xl">Holdings</th>
-            </tr>
-        </thead>
-        <tbody class="text-2xl">
-            <!--
-            TODO - each tr will be programmatically added by the view
-            TODO - the td will be updated based on the coingecko api call
-            -->
-            <tr class="bg-slate-100 border-b">
-                <td>BTC</td>
-                <td>$20,000</td>
-            </tr>
-            <tr>
-                <td>ETH</td>
-                <td>$1,200</td>
-            </tr>
-            <tr class="bg-slate-100 border-b">
-                <td>SOL</td>
-                <td>$37</td>
-            </tr>
-        </tbody>
-    </table>
 </div>
 {% endblock content %}
