@@ -1,4 +1,12 @@
-{% extends "base.html" %} 
-{% block content %}
-<h1 class="text-6xl">Portfolio Coin Stats</h1>
-{% endblock content %}
+{% extends "portfolio-base.html" %} 
+{% block main %}
+<div>
+    <h2 class="text-center text-3xl mb-6">Holdings</h2>
+    <div class="flex flex-row justify-around">
+        <span class="text-2xl">Total ETH</span>
+        <span class="text-2xl">Total Cost Basis</span>
+        <span class="text-2xl">Total PnL</span>
+        <span class="text-2xl">Total Worth</span>
+    </div>
+</div>
+{% endblock main %}
