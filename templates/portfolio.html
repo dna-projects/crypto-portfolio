@@ -1,4 +1,58 @@
-{% extends "base.html" %} 
-{% block content %}
-<h1 class="text-6xl">Portfolio</h1>
-{% endblock content %}
+{% extends "portfolio-base.html" %}
+{% block main %}
+<!--Balance & Graph Information -->
+<div class="mb-12 p-3 bg-slate-200 rounded-xl shadow-md">
+    <div class="mb-1 text-lg">
+        Balance
+    </div>
+    <div class="mb-10 text-2xl">
+        $1340.60
+    </div>
+</div>
+<!-- Asset Entries Table -->
+<div class="rounded-xl shadow-md overflow-x-auto">
+    <div class="table w-full">
+        <div class="table-header-group bg-slate-800 text-white text-xl font-bold">
+            <div class="table-row">
+                <!-- TODO: Fix symbol icon positioning -->
+                <div class="table-cell pl-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 21 18" fill="currentColor">
+                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+                    </svg>
+                </div>
+                <div class="table-cell p-2">Coin</div>
+                <div class="table-cell p-2">Price</div>
+                <div class="table-cell p-2">PnL</div>
+                <div class="table-cell p-2">Holdings</div>
+            </div>
+        </div>
+        <div class="table-row-group text-2xl">
+            <div class="table-row hover:bg-slate-200">
+                <div class="table-cell p-2">🐳</div>
+                <div class="table-cell p-2">BTC</div>
+                <div class="table-cell p-2">$20,000</div>
+                <div class="table-cell p-2">+$0.10</div>
+                <div class="table-cell p-2">$500.20</div>
+            </div>
+            <div class="table-row hover:bg-slate-200">
+                <div class="table-cell p-2">🦀</div>
+                <div class="table-cell p-2">ETH</div>
+                <div class="table-cell p-2">$1,200</div>
+                <div class="table-cell p-2">-$0.10</div>
+                <div class="table-cell p-2">$90.20</div>
+            </div>
+            <div class="table-row hover:bg-slate-200">
+                <div class="table-cell p-2">🌋</div>
+                <div class="table-cell p-2">SOL</div>
+                <div class="table-cell p-2">$37</div>
+                <div class="table-cell p-2">+$0.10</div>
+                <div class="table-cell p-2">$750.20</div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Add token -->
+<div class="flex justify-center mt-10 text-lg">
+    <button class="px-4 py-1 hover:bg-gray-600 hover:text-white rounded-2xl bg-gray-800 text-slate-300">+ Add Token</button>
+</div>
+{% endblock main %}
