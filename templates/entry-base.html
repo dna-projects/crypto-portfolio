@@ -1,18 +1,12 @@
 <script src="https://cdn.tailwindcss.com"></script>
 {% comment %}
-Reset css with margin 0 auto?? 
+Reset css with margin 0 auto??
 {% endcomment %}
-<div class="flex justify-center h-screen w-screen">
-    <div class="flex flex-col justify-around h-72 p-10 border rounded-2xl border-black">
-        <div>
-            Project Name
+<div class="container">
+    <div class="flex justify-center bg-slate-300 h-screen w-screen"> <!-- background -->
+        <div class="flex flex-col self-center bg-white w-72 rounded-xl drop-shadow-lg p-5"> <!-- input div box -->
+            {% block content %} {% endblock content %}
         </div>
-        <form>
-            <div>Email: </div>
-            <div>Password: </div>
-            <button>Login</button>
-        </form>
-        <button>Register</button>
     </div>
 </div>
-{% block content %} {% endblock content %}
+

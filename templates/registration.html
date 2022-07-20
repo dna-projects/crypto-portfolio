@@ -1,4 +1,21 @@
-{% extends "entry-base.html" %} 
+{% extends "entry-base.html" %}
 {% block content %}
-<h1 class="text-6xl">Registraton Page</h1>
+<button class="place-self-start text-blue-700">
+    <a href="{% url 'login' %}">Back</a>
+</button>
+<div class="self-center text-md font-bold mb-3">
+    Registration
+</div>
+<form class="flex flex-col mb-0">
+    <div class="m-3">
+        <input type="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5" placeholder="Email" required> <!-- input attributes from Flowbite -->
+    </div>
+    <div class="m-3">
+        <input type="password" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5" placeholder="Password" required> <!-- input attributes from Flowbite -->
+    </div>
+    <div class="m-3">
+        <input type="password" id="confirm_password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Confirm Password" required> <!-- input attributes from Flowbite -->
+    </div>
+    <button type="button" class=" text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center m-5 mb-0">Submit</button> <!-- button attributes from Flowbite -->
+</form>
 {% endblock content %}
