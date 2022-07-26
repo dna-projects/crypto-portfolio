@@ -48,6 +48,16 @@
                 <div class="table-cell p-2">+$0.10</div>
                 <div class="table-cell p-2">$750.20</div>
             </div>
+            <!-- Testing accessing the data from the database -->
+            {% for asset in asset_entries %}
+                <div class="table-row hover:bg-slate-200">
+                    <div class="table-cell p-2">🌋</div>
+                    <div class="table-cell p-2">{{ asset.name }}</div>
+                    <div class="table-cell p-2">[CG API]</div>
+                    <div class="table-cell p-2">[CG API]</div>
+                    <div class="table-cell p-2">{{ asset.cost_basis }}</div>
+                </div>
+            {% endfor %}
         </div>
     </div>
 </div>
