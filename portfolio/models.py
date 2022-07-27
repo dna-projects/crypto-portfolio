@@ -1,11 +1,15 @@
 from django.db import models
 from django.core.validators import MinValueValidator
+from django.contrib.auth.models import AbstractUser
 from decimal import Decimal
 
 # Create your models here.
 
-# class User(models.model):
-#     pass
+class User(AbstractUser):
+    pass
+
+    def __str__(self):
+        return self.username
 
 class AssetEntry(models.Model):
     name = models.CharField(max_length=24)

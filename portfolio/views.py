@@ -1,5 +1,6 @@
 from pstats import Stats
 from django.views.generic import TemplateView
+from portfolio.forms import UserRegistrationForm
 from portfolio.models import AssetEntry
 from django.shortcuts import render
 
@@ -9,6 +10,10 @@ class LoginPageView(TemplateView):
 
 class RegistrationPageView(TemplateView):
     template_name = 'registration.html'
+    form_class = UserRegistrationForm
+
+    def post():
+        pass
 
 # Portfolio related...
 class PortfolioPageView(TemplateView):
