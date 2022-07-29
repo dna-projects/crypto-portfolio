@@ -1,29 +1,18 @@
 from pstats import Stats
-from django.views.generic import TemplateView, FormView
+from django.views.generic import TemplateView, CreateView
 from portfolio.forms import UserRegistrationForm
 from portfolio.models import AssetEntry
-from django.shortcuts import render, redirect
+from django.shortcuts import render
+from django.urls import reverse_lazy
 
 # Entrypoints
 class LoginPageView(TemplateView):
     template_name = 'login.html'
 
-class RegistrationPageView(FormView):
+class RegistrationPageView(CreateView):
     template_name = 'registration.html'
     form_class = UserRegistrationForm
-
-    def post(self, request):
-        form = self.form_class(request.POST)
-
-        if form.is_valid():
-            email = form.cleaned_data['email']
-            password1 = form.cleaned_data['password1']
-            password2 = form.cleaned_data['password2']
-            form.save()
-
-            return redirect('login')
-
-        return render(request, self.template_name, {'form': self.form_class})
+    success_url = reverse_lazy('login')
 
 # Portfolio related...
 class PortfolioPageView(TemplateView):
