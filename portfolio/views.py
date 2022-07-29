@@ -1,19 +1,29 @@
 from pstats import Stats
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, FormView
 from portfolio.forms import UserRegistrationForm
 from portfolio.models import AssetEntry
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 # Entrypoints
 class LoginPageView(TemplateView):
     template_name = 'login.html'
 
-class RegistrationPageView(TemplateView):
+class RegistrationPageView(FormView):
     template_name = 'registration.html'
     form_class = UserRegistrationForm
 
-    def post():
-        pass
+    def post(self, request):
+        form = self.form_class(request.POST)
+
+        if form.is_valid():
+            email = form.cleaned_data['email']
+            password1 = form.cleaned_data['password1']
+            password2 = form.cleaned_data['password2']
+            form.save()
+
+            return redirect('login')
+
+        return render(request, self.template_name, {'form': self.form_class})
 
 # Portfolio related...
 class PortfolioPageView(TemplateView):

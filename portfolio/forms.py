@@ -9,4 +9,4 @@ class UserRegistrationForm(UserCreationForm):
         # This will tie into Django's default user model
         # Has built-in fields: username, password1, pass2 (verification)
         model = User
-        fields = ("email",)
+        fields = ("email", "password1", "password2")
