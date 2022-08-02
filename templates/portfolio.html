@@ -62,7 +62,71 @@
     </div>
 </div>
 <!-- Add token -->
-<div class="flex justify-center mt-10 text-lg">
+<div id="addTokenButton" class="flex justify-center mt-10 text-lg">
     <button class="px-4 py-1 hover:bg-gray-600 hover:text-white rounded-2xl bg-gray-800 text-slate-300">+ Add Token</button>
 </div>
+
+<!-- Modal Form for new tokens -->
+<div id="authentication-modal" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 w-full  h-modal md:h-full justify-center items-center" aria-modal="true">
+    <div class="relative p-4 w-full max-w-md h-full md:h-auto">
+        <div class="relative bg-white rounded-lg shadow border border-black">
+            <!-- Close button -->
+            <button id="close" type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center">
+                <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path  d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"></path></svg>
+            </button>
+            <div class="flex flex-col py-6 px-6 lg:px-8">
+                <h3 class="self-center font-semibold my-5 text-xl text-gray-900">Enter New Token Information</h3>
+                <!-- Form start -->
+                <form method="post" class="space-y-6" action="">
+                    <div>
+                        <label class="block mb-2 text-sm font-medium text-gray-900">Token Name</label>
+                        <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required="">
+                    </div>
+                    <div>
+                        <label class="block mb-2 text-sm font-medium text-gray-900">Quantity</label>
+                        <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required="">
+                    </div>
+                    <div>
+                        <label class="block mb-2 text-sm font-medium text-gray-900">Price</label>
+                        <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required="">
+                    </div>
+                    <div>
+                        <label class="block mb-2 text-sm font-medium text-gray-900">Date</label>
+                        <input type="date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required="">
+                    </div>
+                    <div class="flex justify-center">
+                        <button type="submit" class="px-4 py-1 hover:bg-gray-600 hover:text-white rounded-2xl bg-gray-800 text-slate-300">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    // Get the modal
+    var modal = document.getElementById("authentication-modal");
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("addTokenButton");
+
+    // Get the button that closes the modal
+    var exit = document.getElementById("close");
+
+    // When the user clicks the button, open the modal
+    btn.onclick = function() {
+        modal.style.display = "flex";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    exit.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
 {% endblock main %}
