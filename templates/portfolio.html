@@ -78,22 +78,28 @@
                 <h3 class="self-center font-semibold my-5 text-xl text-gray-900">Enter New Token Information</h3>
                 <!-- Form start -->
                 <form method="post" class="space-y-6" action="">
-                    <div>
-                        <label class="block mb-2 text-sm font-medium text-gray-900">Token Name</label>
-                        <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required="">
+                    {% csrf_token %}
+                    <label class="block mb-2 text-sm font-medium text-gray-900">Token Name</label>
+                    <div class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                        {{ form.name }}
                     </div>
-                    <div>
-                        <label class="block mb-2 text-sm font-medium text-gray-900">Quantity</label>
-                        <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required="">
+                    <label class="block mb-2 text-sm font-medium text-gray-900">Cost Basis</label>
+                    <div class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                        {{ form.cost_basis }}
                     </div>
-                    <div>
-                        <label class="block mb-2 text-sm font-medium text-gray-900">Price</label>
-                        <input class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required="">
+                    <label class="block mb-2 text-sm font-medium text-gray-900">Quantity</label>
+                    <div class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                        {{ form.quantity }}
                     </div>
-                    <div>
+                    <label class="block mb-2 text-sm font-medium text-gray-900">Price</label>
+                    <div class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                        {{ form.price_at_purchase }}
+                    </div>
+                    <!-- <div>
                         <label class="block mb-2 text-sm font-medium text-gray-900">Date</label>
                         <input type="date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required="">
-                    </div>
+                        {{ form.entry_datetime }}
+                    </div> -->
                     <div class="flex justify-center">
                         <button type="submit" class="px-4 py-1 hover:bg-gray-600 hover:text-white rounded-2xl bg-gray-800 text-slate-300">Submit</button>
                     </div>
