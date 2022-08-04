@@ -23,8 +23,8 @@ class PortfolioPageView(TemplateView):
     asset_entries = AssetEntry.objects.all()
     success_url = reverse_lazy('portfolio')
 
-    def get(self, request):
-        return render(request, self.template_name, {'asset_entries': self.asset_entries})
+    # def get(self, request):
+    #     return render(request, self.template_name, {'asset_entries': self.asset_entries})
 
 class PortfolioStatsPageView(TemplateView):
     template_name = 'p-coin-stats.html'
