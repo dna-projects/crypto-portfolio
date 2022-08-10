@@ -18,8 +18,10 @@
         <div class="table-row-group text-2xl">
             <div class="table-row hover:bg-slate-200">
                 <div class="table-cell p-2">1</div>
-                <div class="table-cell p-2">🐳 BTC</div>
-                <div class="table-cell p-2">$20,000</div>
+                {% if button_pressed %}
+                    <div class="table-cell p-2">🐳 {{ asset_name }}</div>
+                    <div class="table-cell p-2">{{ asset_price }}</div>
+                {% endif %}
                 <div class="table-cell p-2">$300,000,000</div>
                 <div class="table-cell p-2">5%</div>
                 <div class="table-cell p-2">$25,000,000</div>
@@ -39,6 +41,9 @@
                 <div class="table-cell p-2">$750.20</div>
             </div>
         </div>
+    </div>
+    <div class="flex justify-center mt-10 text-lg">
+        <button id="addTokenButton" class="px-4 py-1 hover:bg-gray-600 hover:text-white rounded-2xl bg-gray-800 text-slate-300">Get CoinGecko Data for BTC</button>
     </div>
 </div>
 {% endblock main %}

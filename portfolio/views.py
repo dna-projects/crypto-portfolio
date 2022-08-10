@@ -6,6 +6,8 @@ from portfolio.forms import NewTokenForm
 from portfolio.models import AssetEntry
 from django.shortcuts import render
 from django.urls import reverse_lazy
+import requests 
+import json
 
 # Entrypoints
 class LoginPageView(FormView):
@@ -36,6 +38,17 @@ class PortfolioStatsPageView(TemplateView):
 # TODO think about using ABC (abstract base classes)
 class MarketcapPageView(TemplateView):
     template_name = 'mc.html'
+    
+    def testAPI(self, request):
+        # token_name = {'Ethereum': 'ethereum', 'Bitcoin': 'bitcoin'}
+        # https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=USD
+        # f"https://api.coingecko.com/api/v3/simple/price?ids={token_name}&vs_currencies=USD
+        response = requests.get("")
+        asset = json.loads(response.content)
+        asset_name = asset['_name']
+        # asset_name = 'coin gecko request for BTC coin name'
+        asset_price = 'coin gecko request for BTC'
+        return render(request, self.template_name, {'asset_name': asset_name, 'asset_price': asset_price})
 
 class MarketcapStatsPageView(TemplateView):
     template_name = 'mc-coin-stats.html'
