@@ -43,3 +43,22 @@ class NewTokenForm(ModelForm):
     class Meta:
         model = AssetEntry
         fields = ("name", "cost_basis", "price_at_purchase", "quantity") #add entry_datetime
+
+# BEFORE COMMIT
+
+# Login Form
+
+from django.contrib.auth.forms import AuthenticationForm
+
+class UserLoginForm(AuthenticationForm):
+    class Meta:
+        model = User
+        fields = ("username" , "password")
+        widgets = {
+            'username': TextInput(attrs={ 
+                'class': 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-600'
+                }),
+            'password': PasswordInput(attrs={ 
+                'class': 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-600'
+                }),
+        }

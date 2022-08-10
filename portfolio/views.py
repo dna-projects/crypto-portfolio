@@ -1,14 +1,17 @@
 from pstats import Stats
 from django.views.generic import TemplateView, CreateView, View, FormView
 from portfolio.forms import UserRegistrationForm
+from portfolio.forms import UserLoginForm
 from portfolio.forms import NewTokenForm
 from portfolio.models import AssetEntry
 from django.shortcuts import render
 from django.urls import reverse_lazy
 
 # Entrypoints
-class LoginPageView(TemplateView):
+class LoginPageView(FormView):
     template_name = 'login.html'
+    form_class = UserLoginForm
+    success_url = reverse_lazy('portfolio')
 
 class RegistrationPageView(CreateView):
     template_name = 'registration.html'
