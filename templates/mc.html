@@ -10,13 +10,15 @@
                 <div class="table-cell p-2">#</div>
                 <div class="table-cell p-2">Coin</div>
                 <div class="table-cell p-2">Price</div>
-                <div class="table-cell p-2">Marketcap</div>
+                <div class="table-cell p-2">1h</div>
+                <div class="table-cell p-2">24h</div>
                 <div class="table-cell p-2">7d</div>
                 <div class="table-cell p-2">24h Volume</div>
+                <div class="table-cell p-2">Marketcap</div>
             </div>
         </div>
         <div class="table-row-group text-2xl">
-            <div class="table-row hover:bg-slate-200">
+            <!-- <div class="table-row hover:bg-slate-200">
                 <div class="table-cell p-2">1</div>
                 {% if button_pressed %}
                     <div class="table-cell p-2">🐳 {{ asset_name }}</div>
@@ -25,21 +27,19 @@
                 <div class="table-cell p-2">$300,000,000</div>
                 <div class="table-cell p-2">5%</div>
                 <div class="table-cell p-2">$25,000,000</div>
-            </div>
+            </div> -->
+            {% for token in token_list%}
             <div class="table-row hover:bg-slate-200">
-                <div class="table-cell p-2">2</div>
-                <div class="table-cell p-2">🦀 ETH</div>
-                <div class="table-cell p-2">$1,200</div>
-                <div class="table-cell p-2">-$0.10</div>
-                <div class="table-cell p-2">$90.20</div>
+                <div class="table-cell p-2">{{ token.rank }}</div>
+                <div class="table-cell p-2">{{ token.name }}</div>
+                <div class="table-cell p-2">{{ token.price }}</div>
+                <div class="table-cell p-2">{{ token.one_hour_performance }}</div>
+                <div class="table-cell p-2">{{ token.one_day_performance }}</div>
+                <div class="table-cell p-2">{{ token.seven_day_performance }}</div>
+                <div class="table-cell p-2">{{ token.one_day_volume }}</div>
+                <div class="table-cell p-2">{{ token.marketcap }}</div>
             </div>
-            <div class="table-row hover:bg-slate-200">
-                <div class="table-cell p-2">3</div>
-                <div class="table-cell p-2">🌋 SOL</div>
-                <div class="table-cell p-2">$37</div>
-                <div class="table-cell p-2">+$0.10</div>
-                <div class="table-cell p-2">$750.20</div>
-            </div>
+            {% endfor %}
         </div>
     </div>
     <div class="flex justify-center mt-10 text-lg">
