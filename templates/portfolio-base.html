@@ -1,22 +1,24 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="flex flex-col items-center h-max bg-slate-400">
-    <div class="w-1/2">
-        <!-- Navigation tabs -->
-        <div class="mt-28 ml-14">
-            <ul class="flex text-slate-900 text-xl gap-6">
-                <li>
-                    <button class="hover:underline underline-offset-8 decoration-indigo-100"><a href="{% url 'portfolio' %}">Portfolio</a></button>
-                </li>
-                <li>
-                    <button class="hover:underline underline-offset-8 decoration-indigo-100"><a href="{% url 'mc' %}">Marketcap</a></button>
-                </li>
-            </ul>
-        </div>
-        <div class="h-fit mt-6 py-12 px-10 shadow-xl rounded-xl bg-white">
-            {% block main %} 
-            {% endblock main %}
+<div class="h-full bg-slate-400">
+    <div class="flex flex-col items-center bg-slate-400">
+        <div class="w-1/2">
+            <!-- Navigation tabs -->
+            <div class="mt-28 ml-14">
+                <ul class="flex text-slate-900 text-xl gap-6">
+                    <li>
+                        <button class="hover:underline underline-offset-8 decoration-indigo-100"><a href="{% url 'portfolio' %}">Portfolio</a></button>
+                    </li>
+                    <li>
+                        <button class="hover:underline underline-offset-8 decoration-indigo-100"><a href="{% url 'mc' %}">Marketcap</a></button>
+                    </li>
+                </ul>
+            </div>
+            <div class="h-fit mt-6 py-12 px-10 shadow-xl rounded-xl bg-white">
+                {% block main %} 
+                {% endblock main %}
+            </div>
         </div>
     </div>
 </div>
