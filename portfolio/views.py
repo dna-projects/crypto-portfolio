@@ -6,7 +6,6 @@ from portfolio.forms import NewTokenForm
 from portfolio.models import AssetEntry
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from dataclasses import dataclass
 import requests 
 import json
 
@@ -40,55 +39,53 @@ class PortfolioStatsPageView(TemplateView):
 class MarketcapPageView(TemplateView):
     template_name = 'mc.html'
     
-    @dataclass
     class TokenAPI:
-        name: str
-        symbol: str
-        rank: int
-        price: float
-        one_hour_performance: float
-        one_day_performance: float
-        seven_day_performance: float
-        one_day_volume: int
-        marketcap: int
+        def __init__(self, index, request, mockup=False):
+            if not mockup:
+                asset = request
+                self.name = asset[index]['name']
+                self.symbol = asset[index]['symbol']
+                self.rank = asset[index]['market_cap_rank']
+                self.price = asset[index]['current_price']
+                if self.price > 0.01:
+                    self.price = f"${self.price:,.2f}"
+                else:
+                    self.price = f"${self.price:.7f}"
+                # self.one_hour_performance = f"{asset[index]['price_change_percentage_1h_in_currency']:.1f}%"
+                self.one_day_performance = f"{asset[index]['price_change_percentage_24h']:.1f}%"
+                # self.seven_day_performance = f"{asset[index]['price_change_percentage_7d']:.1f}%"
+                self.one_day_volume = f"{asset[index]['total_volume']:,}"
+                self.marketcap = f"{asset[index]['market_cap']:,}"
+            else:
+                self.build_mockup()
+
+        def build_mockup(self):
+            self.name = 'Solana';
+            self.symbol = 'SOL'
+            self.rank = 9
+            self.price = '43.31'
+            # mockup_one_hour_performance = 0.19999999
+            # self.one_hour_performance = f'{mockup_one_hour_performance:.1f}%'
+            self.one_day_performance = '-1.31881'
+            # self.seven_day_performance = '6.95958'
+            mockup_one_day_vol = 4975982338375
+            self.one_day_volume = f"{mockup_one_day_vol:,}"
+            mockup_mc = 15069857156
+            self.marketcap = f"{mockup_mc:,}"
+
+
+    def get(self, request):        
+        # Make request to coin gecko API for the token list up to top 15 tokens
+        num_tokens = 15
+        currency = 'usd'
+        source_list = f"https://api.coingecko.com/api/v3/coins/markets?vs_currency={currency}&order=market_cap_desc&per_page={num_tokens}&page=1&sparkline=false"
+        response = requests.get(source_list)
+        asset = json.loads(response.content)
         
-        def __init__(self, name):
-            self.name = name
-            response = requests.get(self.build_request())
-            asset = json.loads(response.content)
-            self.symbol = asset['symbol']
-            self.rank = asset['market_cap_rank']
-            self.price = asset['market_data']['current_price']['usd']
+        token_list = []
+        for index, _ in enumerate(asset):
+            token_list.append(self.TokenAPI(index=index, request=asset, mockup=False))
 
-            # TODO need to find one hour performance
-            # self.one_hour_performance = asset['market_data']['']
-            self.one_day_performance = asset['market_data']['price_change_percentage_24h']
-            self.seven_day_performance = asset['market_data']['price_change_percentage_7d']
-            self.one_day_volume = asset['market_data']['total_volume']['usd']
-            # TODO need to find 24h volume
-            self.marketcap = asset['market_data']['market_cap']['usd']
-
-        def build_request(self):
-            return f"https://api.coingecko.com/api/v3/coins/{self.name}"
-
-    def get(self, request):
-        # token_name = {'Ethereum': 'ethereum', 'Bitcoin': 'bitcoin'}
-        # https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=USD
-        # f"https://api.coingecko.com/api/v3/simple/price?ids={token_name}&vs_currencies=USD
-        
-        # coin_gecko_list = ["ether", 'btc', 'solana']
-
-        # token_list = []
-        # for token_names in coin_gecko_list:
-        #     token_list.append(self.TokenAPI(name=token_names))
-
-        token_list = [
-            self.TokenAPI(name="ethereum"),
-            self.TokenAPI(name="bitcoin"),
-            self.TokenAPI(name="solana")
-        ]
-        # # asset_name = 'coin gecko request for BTC coin name'
-        # asset_price = 'coin gecko request for BTC'
         return render(request, self.template_name, {'token_list': token_list})
 
 class MarketcapStatsPageView(TemplateView):
