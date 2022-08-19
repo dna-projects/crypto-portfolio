@@ -1,5 +1,13 @@
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.forms import ModelForm, EmailInput, PasswordInput, TextInput, CharField, NumberInput, Select
+from django.forms import (
+    ModelForm, 
+    EmailInput, 
+    PasswordInput, 
+    TextInput, 
+    CharField, 
+    NumberInput, 
+    Select,
+    HiddenInput)
 from .models import User
 from .models import AssetEntry
 
@@ -77,5 +85,5 @@ class NewTokenForm(ModelForm):
                 'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-6 py-2.5 pr-2.5',
                 'min': '0'
             }),
-            'coingecko_id': TextInput(attrs={'type': 'hidden'})
+            'coingecko_id': HiddenInput
         }
