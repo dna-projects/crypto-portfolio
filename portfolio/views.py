@@ -28,6 +28,19 @@ class PortfolioPageView(CreateView):
 
     def get(self, request):
         asset_entries = AssetEntry.objects.all()
+
+        # Get token list from Coingecko
+        # TODO - work on adding to form
+        # num_tokens = 15
+        # currency = 'usd'
+        # source_list = f"https://api.coingecko.com/api/v3/coins/markets?vs_currency={currency}&order=market_cap_desc&per_page={num_tokens}&page=1&sparkline=false"
+        # response = requests.get(source_list)
+        # asset = json.loads(response.content)
+        
+        # token_list = []
+        # for index, _ in enumerate(asset):
+        #     token_list.append((asset[index]['id'], asset[index]['name']))
+
         form = NewTokenForm()
         return render(request, self.template_name, {'asset_entries': asset_entries, 'form': form})
 

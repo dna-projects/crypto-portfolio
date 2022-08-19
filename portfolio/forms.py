@@ -1,5 +1,5 @@
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.forms import ModelForm, EmailInput, PasswordInput, TextInput, CharField, NumberInput
+from django.forms import ModelForm, EmailInput, PasswordInput, TextInput, CharField, NumberInput, Select
 from .models import User
 from .models import AssetEntry
 
@@ -55,11 +55,14 @@ class UserLoginForm(AuthenticationForm):
 # New Token
 
 class NewTokenForm(ModelForm):
+    # def __init__(self, token_list):
+    #     self.token_list = token_list
+
     class Meta:
         model = AssetEntry
         fields = ("name", "cost_basis", "price_at_purchase", "quantity") #add entry_datetime
         widgets = {
-            'name': TextInput(attrs={
+            'name': Select(choices=[('ethereum', 'Ethereum'), ('bitcoin', 'Bitcoin')], attrs={
                 'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'
             }),
             'cost_basis': NumberInput(attrs={
@@ -73,5 +76,6 @@ class NewTokenForm(ModelForm):
             'price_at_purchase': NumberInput(attrs={
                 'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-6 py-2.5 pr-2.5',
                 'min': '0'
-            })
+            }),
+            'coingecko_id': TextInput(attrs={'type': 'hidden'})
         }
