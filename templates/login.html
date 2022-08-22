@@ -16,10 +16,12 @@
     <!-- <div class="m-3">
         <input type="password" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5" placeholder="Password" required>
     </div> -->
-    <button type="submit" class=" text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center m-5">Login</button>
+    <button type="submit" class="text-lg hover:bg-gray-600 hover:text-white rounded-2xl bg-gray-800 text-slate-300 m-5 px-4 py-1">Login</button>
 </form>
 <hr class="w-full" /> <!-- Dividing line -->
-<button class="text-blue-700 mt-3"><a href="{% url 'registration' %}">Register</a></button>
+<div class="flex justify-center">
+    <button class="text-gray-800 mt-3 hover:text-gray-400"><a href="{% url 'registration' %}">Register</a></button>
+</div>
 {% endblock content %}
 
 
