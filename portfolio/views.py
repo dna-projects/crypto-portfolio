@@ -1,3 +1,4 @@
+from lib2to3.pgen2 import token
 from pstats import Stats
 from django.views.generic import TemplateView, CreateView, View, FormView
 from portfolio.forms import UserRegistrationForm
@@ -31,17 +32,18 @@ class PortfolioPageView(CreateView):
 
         # Get token list from Coingecko
         # TODO - work on adding to form
-        # num_tokens = 15
-        # currency = 'usd'
-        # source_list = f"https://api.coingecko.com/api/v3/coins/markets?vs_currency={currency}&order=market_cap_desc&per_page={num_tokens}&page=1&sparkline=false"
-        # response = requests.get(source_list)
-        # asset = json.loads(response.content)
+        num_tokens = 15
+        currency = 'usd'
+        source_list = f"https://api.coingecko.com/api/v3/coins/markets?vs_currency={currency}&order=market_cap_desc&per_page={num_tokens}&page=1&sparkline=false"
+        response = requests.get(source_list)
+        asset = json.loads(response.content)
         
-        # token_list = []
-        # for index, _ in enumerate(asset):
-        #     token_list.append((asset[index]['id'], asset[index]['name']))
+        token_list = []
+        for index, _ in enumerate(asset):
+            token_list.append((asset[index]['id'], asset[index]['name']))
 
         form = NewTokenForm()
+        form.updateChoices(token_list)
         return render(request, self.template_name, {'asset_entries': asset_entries, 'form': form})
 
 class PortfolioStatsPageView(TemplateView):

@@ -5,6 +5,7 @@ from django.forms import (
     PasswordInput, 
     TextInput, 
     CharField, 
+    ChoiceField,
     NumberInput, 
     Select,
     HiddenInput)
@@ -63,16 +64,18 @@ class UserLoginForm(AuthenticationForm):
 # New Token
 
 class NewTokenForm(ModelForm):
-    # def __init__(self, token_list):
-    #     self.token_list = token_list
+    def updateChoices(self, token_list):
+        self.fields['name'].widget = \
+            Select(
+                choices=([(id, name) for id, name in token_list]),
+                attrs={
+                    'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'
+                })
 
     class Meta:
         model = AssetEntry
-        fields = ("name", "cost_basis", "price_at_purchase", "quantity") #add entry_datetime
+        fields = ("name", "cost_basis", "price_at_purchase", "quantity") #add entry_datetime & coingecko_id
         widgets = {
-            'name': Select(choices=[('ethereum', 'Ethereum'), ('bitcoin', 'Bitcoin')], attrs={
-                'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'
-            }),
             'cost_basis': NumberInput(attrs={
                 'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-6 py-2.5 pr-2.5',
                 'min': '0'
@@ -85,5 +88,5 @@ class NewTokenForm(ModelForm):
                 'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-6 py-2.5 pr-2.5',
                 'min': '0'
             }),
-            'coingecko_id': HiddenInput
+            'coingecko_id': HiddenInput(attrs={'id': 'coingecko-id'})
         }
