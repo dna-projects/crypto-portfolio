@@ -64,17 +64,21 @@ class UserLoginForm(AuthenticationForm):
 # New Token
 
 class NewTokenForm(ModelForm):
-    def updateChoices(self, token_list):
+    def updateChoices(self, token_names):
+        # Create a choices list that consists of a value equal to name and a label
+        # equal to name -> ('Bitcoin', 'Bitcoin')
+        self.token_names = [(name, name) for name in [*token_names]]
+
         self.fields['name'].widget = \
             Select(
-                choices=([(id, name) for id, name in token_list]),
+                choices=(self.token_names),
                 attrs={
                     'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'
                 })
 
     class Meta:
         model = AssetEntry
-        fields = ("name", "cost_basis", "price_at_purchase", "quantity") #add entry_datetime & coingecko_id
+        fields = ("name", "cost_basis", "price_at_purchase", "quantity", "coingecko_id") #add entry_datetime
         widgets = {
             'cost_basis': NumberInput(attrs={
                 'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-6 py-2.5 pr-2.5',
@@ -88,5 +92,5 @@ class NewTokenForm(ModelForm):
                 'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-6 py-2.5 pr-2.5',
                 'min': '0'
             }),
-            'coingecko_id': HiddenInput(attrs={'id': 'coingecko-id'})
+            'coingecko_id': HiddenInput
         }

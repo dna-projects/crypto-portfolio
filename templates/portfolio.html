@@ -118,11 +118,12 @@
                     <div class=''>
                         {{ form.name }}
                     </div>
+                    {{ tokens|json_script:"token-data" }}
                     {% comment %} The coingecko_id needs to have a value! Otherwise
                     It won't get submitted correctly!
                     Taking this out for now...
                     {% endcomment %}
-                    {% comment %} {{ form.coingecko_id }} {% endcomment %}
+                    {{ form.coingecko_id }}
                     <label class="block mb-1 mt-4 text-sm font-medium text-gray-900">Cost Basis</label>
                     <div class="relative">
                         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -219,6 +220,17 @@
                 modal.style.display = "none";
             }
         }
+    }
+
+    document.querySelector('#id_name').addEventListener('change', updateCoingeckoId);
+
+    function updateCoingeckoId() {
+        let tokens = JSON.parse(document.getElementById('token-data').textContent);
+        let tokenSelected = document.querySelector('#id_name').selectedOptions[0].label;
+        let coingeckoId = document.querySelector('#id_coingecko_id');
+    
+        coingeckoId.value = tokens[tokenSelected];
+        console.log(coingeckoId.value);
     }
 </script>
 {% endblock main %}

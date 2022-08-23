@@ -31,20 +31,24 @@ class PortfolioPageView(CreateView):
         asset_entries = AssetEntry.objects.all()
 
         # Get token list from Coingecko
-        # TODO - work on adding to form
+        # TODO - Run the api call only when opening the add token modal
         num_tokens = 15
         currency = 'usd'
-        source_list = f"https://api.coingecko.com/api/v3/coins/markets?vs_currency={currency}&order=market_cap_desc&per_page={num_tokens}&page=1&sparkline=false"
-        response = requests.get(source_list)
+        url_tokens = f"https://api.coingecko.com/api/v3/coins/markets?vs_currency={currency}&order=market_cap_desc&per_page={num_tokens}&page=1&sparkline=false"
+        response = requests.get(url_tokens)
         asset = json.loads(response.content)
-        
-        token_list = []
+
+        tokens = {'-- Select token --': ''}
         for index, _ in enumerate(asset):
-            token_list.append((asset[index]['id'], asset[index]['name']))
+            tokens[asset[index]['name']] = asset[index]['id']
 
         form = NewTokenForm()
-        form.updateChoices(token_list)
-        return render(request, self.template_name, {'asset_entries': asset_entries, 'form': form})
+        form.updateChoices(tokens)
+        return render(request, self.template_name, {
+            'asset_entries': asset_entries, 
+            'form': form,
+            'tokens': tokens
+            })
 
 class PortfolioStatsPageView(TemplateView):
     template_name = 'p-coin-stats.html'
