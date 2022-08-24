@@ -38,6 +38,7 @@ class PortfolioPageView(CreateView):
         response = requests.get(url_tokens)
         asset = json.loads(response.content)
 
+        # TODO - Default value is able to submit the form...
         tokens = {'-- Select token --': ''}
         for index, _ in enumerate(asset):
             tokens[asset[index]['name']] = asset[index]['id']
