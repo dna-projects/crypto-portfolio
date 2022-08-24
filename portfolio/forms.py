@@ -69,6 +69,9 @@ class NewTokenForm(ModelForm):
         # equal to name -> ('Bitcoin', 'Bitcoin')
         self.token_names = [(name, name) for name in [*token_names]]
 
+        # Add placeholder to the beginning of the option list
+        self.token_names.insert(0, ('', '-- Select token --'))
+
         self.fields['name'].widget = \
             Select(
                 choices=(self.token_names),

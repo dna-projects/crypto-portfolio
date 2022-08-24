@@ -222,13 +222,6 @@
         }
     }
 
-    let tokenSelected = document.querySelector('#id_name').selectedOptions[0].label;
-    if (tokenSelected === '-- Select token --') {
-        // TODO - Re-enable submit button when not selected!
-        document.querySelector('#submit-new-token').disabled = true;
-    }
-
-
     document.querySelector('#id_name').addEventListener('change', updateCoingeckoId);
 
     function updateCoingeckoId() {
