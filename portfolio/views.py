@@ -1,6 +1,11 @@
 from lib2to3.pgen2 import token
 from pstats import Stats
-from django.views.generic import TemplateView, CreateView, View, FormView
+from django.views.generic import (
+    TemplateView, 
+    CreateView, 
+    View, 
+    FormView,
+    UpdateView)
 from portfolio.forms import UserRegistrationForm
 from portfolio.forms import UserLoginForm
 from portfolio.forms import NewTokenForm
@@ -49,6 +54,13 @@ class PortfolioPageView(CreateView):
             'form': form,
             'tokens': tokens
             })
+
+class PortfolioEditView(UpdateView):
+    model = AssetEntry
+    success_url = reverse_lazy('portfolio')
+    template_name = 'portfolio-edit.html'
+    fields = ["cost_basis", "price_at_purchase", "quantity", "coingecko_id"]
+    # form_class = NewTokenForm
 
 class PortfolioStatsPageView(TemplateView):
     template_name = 'p-coin-stats.html'

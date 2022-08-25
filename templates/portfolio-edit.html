@@ -1,0 +1,35 @@
+{% extends "portfolio-base.html" %}
+{% block main %}
+<div class="rflex flex-col py-6 px-6 lg:px-8">
+    <h3 class="self-center font-semibold my-5 text-xl text-gray-900">Update Token Information</h3>
+    <form method="post">
+        {% csrf_token %}
+        <label class="block mb-1 mt-6 text-sm font-medium text-gray-900">Token Name</label>
+        <div class=''>
+            {{ form.name }}
+        </div>
+        {{ form.coingecko_id }}
+        <label class="block mb-1 mt-4 text-sm font-medium text-gray-900">Cost Basis</label>
+        <div class="relative">
+            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <span class="text-gray-500 sm:text-sm"> $ </span>
+            </div>
+            {{ form.cost_basis }}
+        </div>
+        <label class="block mb-1 mt-4 text-sm font-medium text-gray-900">Quantity</label>
+        <div class="">
+            {{ form.quantity }}
+        </div>
+        <label class="block mb-1 mt-4 text-sm font-medium text-gray-900">Price</label>
+        <div class="relative">
+            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <span class="text-gray-500 sm:text-sm"> $ </span>
+            </div>
+            {{ form.price_at_purchase }}
+        </div>
+        <div class="flex justify-center mt-6">
+            <button type="submit" id="submit-token-edit" class="px-4 py-1 hover:bg-gray-600 hover:text-white rounded-2xl bg-gray-800 text-slate-300">Submit</button>
+        </div>
+    </form>
+</div>
+{% endblock main %}
