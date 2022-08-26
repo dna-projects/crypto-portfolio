@@ -59,8 +59,8 @@ class PortfolioEditView(UpdateView):
     model = AssetEntry
     success_url = reverse_lazy('portfolio')
     template_name = 'portfolio-edit.html'
-    fields = ["cost_basis", "price_at_purchase", "quantity", "coingecko_id"]
-    # form_class = NewTokenForm
+    # fields = ["cost_basis", "price_at_purchase", "quantity"]
+    form_class = NewTokenForm
 
 class PortfolioStatsPageView(TemplateView):
     template_name = 'p-coin-stats.html'
