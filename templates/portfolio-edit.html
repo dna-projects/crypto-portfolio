@@ -9,7 +9,7 @@
         <div class="grid grid-cols-8 gap-4 bg-slate-100 rounded-lg p-5">
             <!-- TODO - Figure out how to access the asset's name -->
             <div class="flex flex-col">
-                <label class=" block text-sm font-medium text-gray-900 mb-2">Placeholder</label>
+                <label class=" block text-sm font-medium text-gray-900 mb-2">Token</label>
                 <p class="">ETH</p>
             </div>
             <div class="flex flex-col col-span-2">
@@ -37,7 +37,7 @@
                 </div>
             </div>
             <!-- Delete Button -->
-            <button id="delete-button" class="justify-self-end self-end text-gray-400 pb-2 hover:text-gray-900">
+            <button type="button" id="delete-button" class="justify-self-end self-end text-gray-400 pb-2 hover:text-gray-900">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -82,6 +82,32 @@
         </div>
     </div>
 </div>
+<script>
+    const deleteElement = document.querySelectorAll('#delete-button');
+    deleteElement.forEach(el => {
+        el.addEventListener('click', deleteEntry, false);
+    });
 
+    function deleteEntry() {
+        const modal = document.getElementById("delete-modal");
+        modal.style.display = "flex";
+
+        const closeBtn = document.getElementById("delete-close");
+        closeBtn.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        const cancelBtn = document.querySelector("#delete-cancel");
+        cancelBtn.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    }
+</script>
 
 {% endblock main %}
