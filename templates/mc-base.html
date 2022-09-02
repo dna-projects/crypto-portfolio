@@ -11,11 +11,11 @@
                         <button class="hover:underline underline-offset-8 decoration-indigo-100"><a href="{% url 'portfolio' %}">Portfolio</a></button>
                     </li>
                     <li>
-                        <button class="hover:underline underline-offset-8 decoration-indigo-100"><a href="{% url 'mc' %}">Marketcap</a></button>
+                        <button class="font-bold hover:underline underline-offset-8 decoration-indigo-100"><a href="{% url 'mc' %}">Marketcap</a></button>
                     </li>
                 </ul>
             </div>
-            <div class="h-fit mt-6 py-12 px-10 shadow-xl rounded-xl bg-white">
+            <div class="h-fit mt-6 mb-16 py-12 px-10 shadow-xl rounded-xl bg-white">
                 {% block main %} 
                 {% endblock main %}
             </div>

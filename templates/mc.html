@@ -1,6 +1,9 @@
 {% extends "mc-base.html" %}
 {% block main %}
-<h1>Marketcap Page</h1>
+<div class="flex justify-between">
+    <div class="pb-5 text-lg font-bold">Cryptocurrency prices by Market Cap</div>
+    <input placeholder=" Search" class="bg-slate-200 rounded-lg p-1 mb-5">
+</div>
 <!-- Asset Entries Table -->
 <div class="rounded-xl shadow-md overflow-x-auto">
     <div class="table w-full">
@@ -41,9 +44,6 @@
             </div>
             {% endfor %}
         </div>
-    </div>
-    <div class="flex justify-center mt-10 text-lg">
-        <button id="addTokenButton" class="px-4 py-1 hover:bg-gray-600 hover:text-white rounded-2xl bg-gray-800 text-slate-300">Get CoinGecko Data for BTC</button>
     </div>
 </div>
 {% endblock main %}
