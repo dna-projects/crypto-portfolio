@@ -16,6 +16,10 @@ from django.urls import reverse_lazy
 import requests 
 import json
 
+# Landing
+class LandingPageView(TemplateView):
+    template_name = 'landing.html'
+
 # Entrypoints
 class LoginPageView(FormView):
     template_name = 'login.html'

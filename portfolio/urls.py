@@ -1,8 +1,10 @@
 from django.urls import path
-from .views import LoginPageView, MarketcapBubblePageView, MarketcapPageView, PortfolioEditView 
+from .views import LoginPageView, MarketcapBubblePageView, MarketcapPageView, PortfolioEditView, LandingPageView
 from .views import MarketcapStatsPageView, PortfolioPageView, PortfolioStatsPageView, RegistrationPageView
 
 urlpatterns = [
+    # Landing
+    path("landing", LandingPageView.as_view(), name="landing"),
     # Entrypoints
     path("login", LoginPageView.as_view(), name="login"),
     path("registration", RegistrationPageView.as_view(), name="registration"),
