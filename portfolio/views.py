@@ -60,7 +60,7 @@ class PortfolioPageView(CreateView):
             'tokens': tokens
             })
 
-class PortfolioEditView(DeletionMixin, UpdateView):
+class PortfolioEditView(UpdateView):
     model = AssetEntry
     success_url = reverse_lazy('portfolio')
     template_name = 'portfolio-edit.html'

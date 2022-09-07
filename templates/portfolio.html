@@ -40,7 +40,7 @@
                 <div class="table-cell p-2">{{ asset.cost_basis }}</div>
                 <div class="table-cell p-2">
                     <!-- Edit -->
-                    <form action="{% url 'asset_edit' asset.id %}" class="flex flex-col">
+                    <form action="{% url 'asset_edit' pk=asset.id %}" class="flex flex-col">
                         {% csrf_token %}
                         <button type="submit" id="edit-button"
                             class="self-center text-gray-400 hover:bg-gray-200 hover:text-gray-900">
