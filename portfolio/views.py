@@ -12,6 +12,10 @@ from django.urls import reverse_lazy
 import requests 
 import json
 
+# Landing
+class LandingPageView(TemplateView):
+    template_name = 'landing.html'
+
 # Entrypoints
 class LoginPageView(FormView):
     template_name = 'login.html'
@@ -52,7 +56,7 @@ class PortfolioPageView(CreateView):
             'tokens': tokens
             })
 
-class PortfolioEditView(DeletionMixin, UpdateView):
+class PortfolioEditView(UpdateView):
     model = AssetEntry
     template_name = 'portfolio-edit.html'
     form_class = EditTokenForm
