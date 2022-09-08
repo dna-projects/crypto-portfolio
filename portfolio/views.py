@@ -4,6 +4,7 @@ from django.views.generic import (
     View, 
     FormView,
     UpdateView)
+from django.views.generic.edit import DeletionMixin
 from portfolio.forms import UserRegistrationForm
 from portfolio.forms import UserLoginForm
 from portfolio.forms import NewTokenForm
@@ -53,18 +54,22 @@ class PortfolioPageView(CreateView):
             'tokens': tokens
             })
 
-class PortfolioEditView(UpdateView):
+class PortfolioEditView(DeletionMixin, UpdateView):
     model = AssetEntry
     success_url = reverse_lazy('portfolio')
     template_name = 'portfolio-edit.html'
-    # fields = ["cost_basis", "price_at_purchase", "quantity"]
     form_class = NewTokenForm
+
+    def post(self, request, pk, *args, **kwargs):
+        if "confirm_delete" in self.request.POST:
+            selected_asset = AssetEntry.objects.get(pk=pk)
+            selected_asset.delete()
+        return super(PortfolioEditView, self).post(request, pk)
 
 class PortfolioStatsPageView(TemplateView):
     template_name = 'p-coin-stats.html'
 
 # Marketcap related...
-# TODO think about using ABC (abstract base classes)
 class MarketcapPageView(TemplateView):
     template_name = 'mc.html'
     

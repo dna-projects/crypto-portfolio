@@ -5,7 +5,7 @@
     <div class="mb-1 text-lg">
         Balance
     </div>
-    <div class="mb-10 text-2xl">
+    <div class="mb-5 text-4xl">
         $1340.60
     </div>
 </div>
@@ -40,10 +40,10 @@
                 <div class="table-cell p-2">{{ asset.cost_basis }}</div>
                 <div class="table-cell p-2">
                     <!-- Edit -->
-                    <form action="{% url 'asset_edit' asset.id %}" method="post" class="inline-block">
+                    <form action="{% url 'asset_edit' asset.id %}" class="flex flex-col">
                         {% csrf_token %}
                         <button type="submit" id="edit-button"
-                            class="text-gray-400 hover:bg-gray-200 hover:text-gray-900">
+                            class="self-center text-gray-400 hover:bg-gray-200 hover:text-gray-900">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -117,15 +117,9 @@
     </div>
 </div>
 <script>
-
     // Button Event Listeners
     const addElement = document.getElementById("addTokenButton");
     addElement.addEventListener('click', addEntry, false);
-
-    const deleteElement = document.querySelectorAll('#delete-button');
-    deleteElement.forEach(el => {
-        el.addEventListener('click', deleteEntry, false);
-    });
 
     /* TODO 
 Need to refactor this into show modal and close modal functions
@@ -141,27 +135,6 @@ can be contained inside the close modal function
 
         const closeBtn = document.getElementById("add-close");
         closeBtn.onclick = function () {
-            modal.style.display = "none";
-        }
-
-        window.onclick = function (event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
-    }
-
-    function deleteEntry() {
-        const modal = document.getElementById("delete-modal");
-        modal.style.display = "flex";
-
-        const closeBtn = document.getElementById("delete-close");
-        closeBtn.onclick = function () {
-            modal.style.display = "none";
-        }
-
-        const cancelBtn = document.querySelector("#delete-cancel");
-        cancelBtn.onclick = function () {
             modal.style.display = "none";
         }
 
