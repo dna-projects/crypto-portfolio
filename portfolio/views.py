@@ -5,9 +5,7 @@ from django.views.generic import (
     FormView,
     UpdateView)
 from django.views.generic.edit import DeletionMixin
-from portfolio.forms import UserRegistrationForm
-from portfolio.forms import UserLoginForm
-from portfolio.forms import NewTokenForm
+from portfolio.forms import EditTokenForm, UserRegistrationForm, UserLoginForm, NewTokenForm
 from portfolio.models import AssetEntry
 from django.shortcuts import render
 from django.urls import reverse_lazy
@@ -56,15 +54,21 @@ class PortfolioPageView(CreateView):
 
 class PortfolioEditView(DeletionMixin, UpdateView):
     model = AssetEntry
-    success_url = reverse_lazy('portfolio')
     template_name = 'portfolio-edit.html'
-    form_class = NewTokenForm
+    form_class = EditTokenForm
+    success_url = reverse_lazy('portfolio')
+
+    # Create a get method that uses the current object's model name 
+    # to display in the template
+    # def get(self, request):
+    #   current_asset = # get object somehow
+    #   return render(request, self.template_name, {'current_asset': current_asset})
 
     def post(self, request, pk, *args, **kwargs):
-        if "confirm_delete" in self.request.POST:
-            selected_asset = AssetEntry.objects.get(pk=pk)
-            selected_asset.delete()
-        return super(PortfolioEditView, self).post(request, pk)
+        if "delete" in self.request.POST:
+            return super().post(request, pk)
+        elif "update" in self.request.POST:
+            return UpdateView.post(self, request, *args, **kwargs)
 
 class PortfolioStatsPageView(TemplateView):
     template_name = 'p-coin-stats.html'

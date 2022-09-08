@@ -62,7 +62,6 @@ class UserLoginForm(AuthenticationForm):
         }
 
 # New Token
-
 class NewTokenForm(ModelForm):
     def updateChoices(self, token_names):
         # Create a choices list that consists of a value equal to name and a label
@@ -97,3 +96,8 @@ class NewTokenForm(ModelForm):
             }),
             'coingecko_id': HiddenInput
         }
+
+# Edit existing token. Uses the new token form and excludes the unnecessary fields
+class EditTokenForm(NewTokenForm):
+    class Meta(NewTokenForm.Meta):
+        exclude = ["name", "coingecko_id"]
