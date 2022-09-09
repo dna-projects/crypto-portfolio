@@ -5,3 +5,4 @@
 __pycache__/
 *$py.class
 *.py[cod]
+db.sqlite3

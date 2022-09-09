@@ -4,7 +4,7 @@ from .views import MarketcapStatsPageView, PortfolioPageView, PortfolioStatsPage
 
 urlpatterns = [
     # Landing
-    path("landing", LandingPageView.as_view(), name="landing"),
+    path("", LandingPageView.as_view(), name="landing"),
     # Entrypoints
     path("login", LoginPageView.as_view(), name="login"),
     path("registration", RegistrationPageView.as_view(), name="registration"),

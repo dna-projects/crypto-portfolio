@@ -56,7 +56,7 @@ class PortfolioPageView(CreateView):
             'tokens': tokens
             })
 
-class PortfolioEditView(UpdateView):
+class PortfolioEditView(DeletionMixin, UpdateView):
     model = AssetEntry
     template_name = 'portfolio-edit.html'
     form_class = EditTokenForm
