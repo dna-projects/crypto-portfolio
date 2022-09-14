@@ -5,16 +5,16 @@
         <div class="w-1/2">
             <!-- Navigation tabs -->
             <div class="mt-28 ml-14">
-                <ul class="flex text-slate-900 text-xl gap-6">
+                <ul class="flex text-2xl gap-6">
                     <li>
-                        <button class="hover:underline underline-offset-8 decoration-indigo-100"><a href="{% url 'portfolio' %}">Portfolio</a></button>
+                        <button class="text-[#FFFDC9] hover:underline underline-offset-8 decoration-indigo-100"><a href="{% url 'portfolio' %}">Portfolio</a></button>
                     </li>
                     <li>
-                        <button class="font-bold hover:underline underline-offset-8 decoration-indigo-100"><a href="{% url 'mc' %}">Marketcap</a></button>
+                        <button class="text-yellow-400 hover:underline underline-offset-8 decoration-indigo-100"><a href="{% url 'mc' %}">Marketcap</a></button>
                     </li>
                 </ul>
             </div>
-            <div class="h-fit mt-6 mb-16 py-12 px-10 shadow-xl rounded-xl bg-white">
+            <div class="h-fit mt-6 mb-16 py-12 px-10 shadow-xl rounded-xl bg-[#16004F] bg-opacity-70">
                 {% block main %} 
                 {% endblock main %}
             </div>

@@ -1,13 +1,13 @@
 {% extends "mc-base.html" %}
 {% block main %}
 <div class="flex justify-between">
-    <div class="pb-5 text-lg font-bold">Cryptocurrency prices by Market Cap</div>
-    <input placeholder=" Search" class="bg-slate-200 rounded-lg p-1 mb-5">
+    <div class="pb-5 text-xl text-[#FFFDC9]">Cryptocurrency prices by Market Cap</div>
+    <input placeholder=" Search" class="bg-blue-100 bg-opacity-20 rounded-lg p-1 mb-5">
 </div>
 <!-- Asset Entries Table -->
-<div class="rounded-xl shadow-md overflow-x-auto">
+<div class="rounded-xl shadow-md overflow-x-auto border border-[#6F7CF1]/40 text-[#FFFDC9] font-light">
     <div class="table w-full">
-        <div class="table-header-group bg-slate-800 text-white text-xl font-bold">
+        <div class="table-header-group bg-[#17014F] text-xl">
             <div class="table-row">
                 <!-- TODO: Fix symbol icon positioning -->
                 <div class="table-cell p-2">#</div>
@@ -20,7 +20,7 @@
                 <div class="table-cell p-2">Marketcap</div>
             </div>
         </div>
-        <div class="table-row-group text-lg">
+        <div class="table-row-group bg-[#230679]/30 text-lg">
             <!-- <div class="table-row hover:bg-slate-200">
                 <div class="table-cell p-2">1</div>
                 {% if button_pressed %}

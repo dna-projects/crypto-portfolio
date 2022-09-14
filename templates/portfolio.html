@@ -1,7 +1,7 @@
 {% extends "portfolio-base.html" %}
 {% block main %}
 <!--Balance & Graph Information -->
-<div class="mb-12 p-3 bg-slate-200 rounded-xl shadow-md">
+<div class="mb-12 p-3 bg-[#230679]/30 text-[#FFFDC9] border border-[#6F7CF1]/40 rounded-xl shadow-md">
     <div class="mb-1 text-lg">
         Balance
     </div>
@@ -10,9 +10,9 @@
     </div>
 </div>
 <!-- Asset Entries Table -->
-<div class="rounded-xl shadow-md overflow-x-auto">
+<div class="rounded-xl shadow-md overflow-x-auto border border-[#6F7CF1]/40 text-[#FFFDC9] font-light"> <!--Border will work for whole table but does not work for individual row on line 15. Must be a tailwind thing. This will probably end up being it's own div due to overlapping div design from Figma. -->
     <div class="table w-full">
-        <div class="table-header-group bg-slate-800 text-white text-xl font-bold">
+        <div class="table-header-group bg-[#17014F] text-xl">
             <div class="table-row">
                 <!-- TODO: Fix symbol icon positioning -->
                 <div class="table-cell pl-3">
@@ -29,15 +29,18 @@
                 <div class="table-cell py-2 pr-4 w-20">Actions</div>
             </div>
         </div>
-        <div class="table-row-group text-lg">
+        <div class="table-row-group bg-[#230679]/30 text-lg text-[#FFFDC9]">
             {% for asset in asset_entries %}
-            <div class="table-row hover:bg-slate-200">
-                <div class="table-cell p-2">🦀</div>
-                <div class="table-cell p-2">{{ asset.name }}</div>
-                <div class="table-cell p-2">[CG API]</div>
-                <div class="table-cell p-2">[CG API]</div>
-                <div class="table-cell p-2">{{ asset.cost_basis }}</div>
+            <div id="asset-{{ forloop.counter }}" class="table-row hover:bg-slate-200">
+                <div class="table-cell align-middle p-2">🦀</div>
+                <div class="table-cell align-middle p-2">{{ asset.name }}</div>
+                <div id="asset-price" class="table-cell align-middle p-2">{{ asset.price_at_purchase }}</div>
+                <div class="table-cell align-middle p-2">[CG API]</div>
                 <div class="table-cell p-2">
+                    <div id="asset-value"></div>
+                    <div id="asset-quantity">{{ asset.quantity }}</div>
+                </div>
+                <div class="table-cell align-middle p-2">
                     <!-- Edit -->
                     <a href="{% url 'asset_edit' asset.id %}" class="flex flex-col">
                         <button type="submit" id="edit-button"
@@ -198,5 +201,15 @@ can be contained inside the close modal function
         coingeckoId.value = tokens[tokenSelected];
         console.log(coingeckoId.value);
     }
+
+    /* Calculate asset value */
+
+    let assetValue = document.querySelectorAll('#asset-value');
+    assetValue.forEach(item => {
+        let currentPrice = document.querySelector('#asset-1 > #asset-price').innerText;
+        let quantity = 2
+        item.innerText = `$${(currentPrice * quantity).toFixed(2)}`
+    })
+
 </script>
 {% endblock main %}
