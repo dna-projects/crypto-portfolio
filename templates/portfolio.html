@@ -30,7 +30,6 @@
             </div>
         </div>
         <div class="table-row-group text-lg">
-            <!-- Testing accessing the data from the database -->
             {% for asset in asset_entries %}
             <div class="table-row hover:bg-slate-200">
                 <div class="table-cell p-2">🦀</div>
@@ -115,7 +114,52 @@
         </div>
     </div>
 </div>
+
+<!-- Portfolio Donut Chart --> 
+<div id="donut-chart">
+</div>
+<script src="https://d3js.org/d3.v7.min.js"></script>
+
 <script>
+    // Donut Chart
+    // TODO - Can this be made responsive?
+    const width = 300,
+        height = 300,
+        margin = 40;
+    const radius = Math.min(width, height) / 2 - margin;
+    const innerR = radius / 2;
+    const svg = d3.select("#donut-chart")
+        .append("svg")
+            .attr("width", width)
+            .attr("height", height)
+        .append("g")
+            .attr("transform", `translate(${width / 2}, ${height / 2})`);
+
+    // Test data - REPLACE with the portfolio contents 
+    // This data will need to consist of the coin name as the key and the holdings as
+    // the value. Arc size will be dependent on the holding value
+    const data = {a: 9, b: 20, c: 30, d: 8, e: 12};
+
+    // Set the color scale
+    // TODO - Choose specific color scheme??
+    const colorScale = d3.scaleOrdinal(d3.schemeTableau10);
+
+    // Compute the position of each group on the pie
+    const pie = d3.pie()
+        .value(d => d[1]);
+    const data_ready = pie(Object.entries(data));
+
+    // Build the pie chart
+    svg
+        .selectAll('whatever')
+        .data(data_ready)
+        .join('path')
+        .attr('d', d3.arc()
+            .innerRadius(innerR)
+            .outerRadius(radius)
+        )
+        .attr('fill', d => colorScale(d));
+
     // Button Event Listeners
     const addElement = document.getElementById("addTokenButton");
     addElement.addEventListener('click', addEntry, false);
