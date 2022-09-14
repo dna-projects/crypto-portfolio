@@ -1,0 +1,20 @@
+{% load static %}
+<script src="https://cdn.tailwindcss.com"></script>
+
+<div class="bg-[#16004f]">
+    <div class="flex justify-center h-screen">
+        <!-- Project Title/Logo -->
+        <div class="flex flex-col self-center m-20">
+            <img src="{% static 'images/apelogotext.svg' %}" alt="logo" class="w-1/2">
+            <div class="text-center text-white mt-10 mb-5">Don't miss out...manage your trades on the blockchain.</div>
+            <div class="flex justify-around">
+                <button><a href="{% url 'mc' %}" class="flex justify-center bg-yellow-400 hover:bg-yellow-300 rounded-full drop-shadow w-36 py-2">Market Cap</a>
+                </button>
+                <button><a href="{% url 'login' %}" class="flex justify-center bg-yellow-400 hover:bg-yellow-300 rounded-full drop-shadow w-36 py-2">Login/Register</a>
+                </button>
+            </div>
+        </div>
+        <!-- Project Image -->
+        <div class="self-center m-20">{IMAGE}</div>
+    </div>
+</div>

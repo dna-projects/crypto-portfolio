@@ -1,43 +1,48 @@
 {% extends "mc-base.html" %}
 {% block main %}
-<h1>Marketcap Page</h1>
+<div class="flex justify-between">
+    <div class="pb-5 text-xl text-[#FFFDC9]">Cryptocurrency prices by Market Cap</div>
+    <input placeholder=" Search" class="bg-blue-100 bg-opacity-20 rounded-lg p-1 mb-5">
+</div>
 <!-- Asset Entries Table -->
-<div class="rounded-xl shadow-md overflow-x-auto">
+<div class="rounded-xl shadow-md overflow-x-auto border border-[#6F7CF1]/40 text-[#FFFDC9] font-light">
     <div class="table w-full">
-        <div class="table-header-group bg-slate-800 text-white text-xl font-bold">
+        <div class="table-header-group bg-[#17014F] text-xl">
             <div class="table-row">
                 <!-- TODO: Fix symbol icon positioning -->
                 <div class="table-cell p-2">#</div>
                 <div class="table-cell p-2">Coin</div>
                 <div class="table-cell p-2">Price</div>
-                <div class="table-cell p-2">Marketcap</div>
-                <div class="table-cell p-2">7d</div>
+                <!-- <div class="table-cell p-2">1h</div> -->
+                <div class="table-cell p-2">24h</div>
+                <!-- <div class="table-cell p-2">7d</div> -->
                 <div class="table-cell p-2">24h Volume</div>
+                <div class="table-cell p-2">Marketcap</div>
             </div>
         </div>
-        <div class="table-row-group text-2xl">
-            <div class="table-row hover:bg-slate-200">
+        <div class="table-row-group bg-[#230679]/30 text-lg">
+            <!-- <div class="table-row hover:bg-slate-200">
                 <div class="table-cell p-2">1</div>
-                <div class="table-cell p-2">🐳 BTC</div>
-                <div class="table-cell p-2">$20,000</div>
+                {% if button_pressed %}
+                    <div class="table-cell p-2">🐳 {{ asset_name }}</div>
+                    <div class="table-cell p-2">{{ asset_price }}</div>
+                {% endif %}
                 <div class="table-cell p-2">$300,000,000</div>
                 <div class="table-cell p-2">5%</div>
                 <div class="table-cell p-2">$25,000,000</div>
-            </div>
+            </div> -->
+            {% for token in token_list%}
             <div class="table-row hover:bg-slate-200">
-                <div class="table-cell p-2">2</div>
-                <div class="table-cell p-2">🦀 ETH</div>
-                <div class="table-cell p-2">$1,200</div>
-                <div class="table-cell p-2">-$0.10</div>
-                <div class="table-cell p-2">$90.20</div>
+                <div class="table-cell p-2">{{ token.rank }}</div>
+                <div class="table-cell p-2">{{ token.name }}</div>
+                <div class="table-cell p-2">{{ token.price }}</div>
+                <!-- <div class="table-cell p-2">{{ token.one_hour_performance }}</div> -->
+                <div class="table-cell p-2">{{ token.one_day_performance }}</div>
+                <!-- <div class="table-cell p-2">{{ token.seven_day_performance }}</div> -->
+                <div class="table-cell p-2">{{ token.one_day_volume }}</div>
+                <div class="table-cell p-2">{{ token.marketcap }}</div>
             </div>
-            <div class="table-row hover:bg-slate-200">
-                <div class="table-cell p-2">3</div>
-                <div class="table-cell p-2">🌋 SOL</div>
-                <div class="table-cell p-2">$37</div>
-                <div class="table-cell p-2">+$0.10</div>
-                <div class="table-cell p-2">$750.20</div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </div>
