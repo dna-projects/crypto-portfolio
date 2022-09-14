@@ -1,0 +1,29 @@
+{% extends "entry-base.html" %}
+{% block content %}
+<button class="place-self-start text-gray-600 hover:text-gray-400">
+    <a href="{% url 'login' %}">Back</a>
+</button>
+<div class="self-center text-md font-bold mb-3">
+    Registration
+</div>
+<form method="post" action="" class="flex flex-col p-1 mb-0">
+    {% csrf_token %}
+    <label class="block text-sm font-medium text-gray-900">Username</label>
+    <div class='my-3'> 
+        {{ form.username }}
+    </div>
+    <label class="block text-sm font-medium text-gray-900">Email</label>
+    <div class='my-3'>
+        {{ form.email }}
+    </div>
+    <label class="block text-sm font-medium text-gray-900">Password</label>
+    <div class='my-3'>
+        {{ form.password1 }}
+    </div>
+    <label class="block text-sm font-medium text-gray-900">Confirm Password</label>
+    <div class="my-3">
+        {{ form.password2 }}
+    </div>
+    <button type="submit" class="text-lg hover:bg-gray-600 hover:text-white rounded-2xl bg-gray-800 text-slate-300 m-5 px-4 py-1">Submit</button> <!-- button attributes from Flowbite -->
+</form>
+{% endblock content %}
