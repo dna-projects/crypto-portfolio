@@ -31,7 +31,7 @@
         </div>
         <div class="table-row-group bg-[#230679]/30 text-lg text-[#FFFDC9]">
             {% for asset in asset_entries %}
-            <div id="asset-{{ forloop.counter }}" class="table-row hover:bg-slate-200">
+            <div id="asset-{{ forloop.counter }}" class="table-row hover:bg-[#17014F]/60">
                 <div class="table-cell align-middle p-2">🦀</div>
                 <div class="table-cell align-middle p-2">{{ asset.name }}</div>
                 <div id="asset-price" class="table-cell align-middle p-2">{{ asset.price_at_purchase }}</div>
@@ -61,7 +61,7 @@
 <!-- Add token -->
 <div class="flex justify-center mt-10 text-lg">
     <button id="addTokenButton"
-        class="px-4 py-1 hover:bg-gray-600 hover:text-white rounded-2xl bg-gray-800 text-slate-300">+ Add Token</button>
+        class="px-4 py-1 hover:bg-[#01013D]/10 hover:text-white rounded-2xl bg-[#01013D] border border-[#6F7CF1] text-slate-300">+ Add Token</button>
 </div>
 
 <!-- Add Token Modal -->
