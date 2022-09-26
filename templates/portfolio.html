@@ -8,9 +8,7 @@
             <div class="self-center w-32 text-lg border bg-[#17014F] border-[#6F7CF1] rounded-lg p-1" style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3)">
                 Balance
             </div>
-            <div class="text-4xl m-7">
-                $1340.60
-            </div>
+            <div id="balance"class="text-4xl m-7"></div>
         </div>
         <!-- Total PnL -->
         <div class="flex flex-col">
@@ -73,12 +71,12 @@
                     <div class="table-cell py-2 pr-4 w-20">Actions</div>
                 </div>
             </div>
-            <div class="table-row-group bg-[#230679]/30 text-lg text-[#FFFDC9]">
+            <div id="assets" class="table-row-group bg-[#230679]/30 text-lg text-[#FFFDC9]">
                 {% for asset in asset_entries %}
                 <div id="asset-{{ forloop.counter }}" class="table-row hover:bg-[#17014F]/60">
                     <div class="table-cell align-middle p-2">🦀</div>
                     <div class="table-cell align-middle p-2">{{ asset.name }}</div>
-                    <div id="asset-price" class="table-cell align-middle p-2">{{ asset.price_at_purchase }}</div>
+                    <div id="asset-price" class="table-cell align-middle p-2">${{ asset.price_at_purchase }}</div>
                     <div class="table-cell align-middle p-2">[CG API]</div>
                     <div class="table-cell p-2">
                         <div id="asset-value"></div>
@@ -207,14 +205,6 @@
     const addElement = document.getElementById("addTokenButton");
     addElement.addEventListener('click', addEntry, false);
 
-    /* TODO 
-Need to refactor this into show modal and close modal functions
-Each function should be able to handle ANY element as an input to the function
-I thihk the only variables that will need to be defined outside the functions are
-for the button and the modal. The close button is universal to all modals so it 
-can be contained inside the close modal function
-*/
-
     function addEntry() {
         const modal = document.getElementById("authentication-modal");
         modal.style.display = "flex";
@@ -242,14 +232,27 @@ can be contained inside the close modal function
         console.log(coingeckoId.value);
     }
 
-    /* Calculate asset value */
+    /* Calculate asset value and total balance*/
 
-    let assetValue = document.querySelectorAll('#asset-value');
-    assetValue.forEach(item => {
-        let currentPrice = document.querySelector('#asset-1 > #asset-price').innerText;
-        let quantity = 2
-        item.innerText = `$${(currentPrice * quantity).toFixed(2)}`
-    })
+    let assets = document.querySelector('#assets').children;
+    let totalBalance = 0;
+
+    for (let item of assets) {
+        // TODO - This is NOT the actual current price. This is the price it was 
+        // purchased at! Need to do add sort of API request
+        // Use substring to ignore the dollar sign at the beginning of the price
+        let currentPrice = item.querySelector('#asset-price').innerText.substring(1);
+        let quantity = item.querySelector('#asset-quantity').innerText;
+        let assetValue = item.querySelector('#asset-value');
+        let itemTotal = currentPrice * quantity;
+        assetValue.innerText = `$${(itemTotal).toLocaleString(undefined, 
+            {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+        totalBalance += itemTotal;
+    }
+
+    let balance = document.querySelector('#balance');
+    balance.innerText = `$${(totalBalance).toLocaleString(undefined, 
+        {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
 
 </script>
 {% endblock main %}
