@@ -7,6 +7,7 @@ from django.views.generic import (
 from django.views.generic.edit import DeletionMixin
 from portfolio.forms import EditTokenForm, UserRegistrationForm, UserLoginForm, NewTokenForm
 from portfolio.models import AssetEntry
+from django.db.models import Sum
 from django.shortcuts import render
 from django.urls import reverse_lazy
 import requests 
@@ -35,6 +36,7 @@ class PortfolioPageView(CreateView):
 
     def get(self, request):
         asset_entries = AssetEntry.objects.all()
+        balance = AssetEntry.objects.aggregate(total=Sum('cost_basis'))
 
         # Get token list from Coingecko
         # TODO - Run the api call only when opening the add token modal
@@ -53,7 +55,8 @@ class PortfolioPageView(CreateView):
         return render(request, self.template_name, {
             'asset_entries': asset_entries, 
             'form': form,
-            'tokens': tokens
+            'tokens': tokens,
+            'balance': balance
             })
 
 class PortfolioEditView(DeletionMixin, UpdateView):
