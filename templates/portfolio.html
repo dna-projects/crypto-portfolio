@@ -1,67 +1,112 @@
 {% extends "portfolio-base.html" %}
 {% block main %}
 <!--Balance & Graph Information -->
-<div class="mb-12 p-3 bg-[#230679]/30 text-[#FFFDC9] border border-[#6F7CF1]/40 rounded-xl shadow-md">
-    <div class="mb-1 text-lg">
-        Balance
+<div class="w-1/4 mx-5">
+    <div class="text-center font-light bg-[#230679]/30 text-[#FFFDC9] border border-[#6F7CF1]/40 rounded-2xl shadow-md">
+        <!-- Balance -->
+        <div class="flex flex-col -mt-5">
+            <div class="self-center w-32 text-lg border bg-[#17014F] border-[#6F7CF1] rounded-lg p-1" style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3)">
+                Balance
+            </div>
+            <div class="text-4xl m-7">
+                $1340.60
+            </div>
+        </div>
+        <!-- Total PnL -->
+        <div class="flex flex-col">
+            <div class="self-center w-32 text-lg border bg-[#17014F] border-[#6F7CF1] rounded-lg p-1" style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3)">
+                Total PnL
+            </div>
+            <div class="text-4xl m-7">
+                5%
+            </div>
+        </div>
     </div>
-    <div class="mb-5 text-4xl">
-        $1340.60
+    <!-- Portfolio Donut Chart -->
+    <div id="donut-chart" class="-ml-5">
     </div>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
 </div>
+
 <!-- Asset Entries Table -->
-<div class="rounded-xl shadow-md overflow-x-auto border border-[#6F7CF1]/40 text-[#FFFDC9] font-light"> <!--Border will work for whole table but does not work for individual row on line 15. Must be a tailwind thing. This will probably end up being it's own div due to overlapping div design from Figma. -->
-    <div class="table w-full">
-        <div class="table-header-group bg-[#17014F] text-xl">
-            <div class="table-row">
-                <!-- TODO: Fix symbol icon positioning -->
-                <div class="table-cell pl-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 -1 21 18" fill="currentColor">
-                        <path fill-rule="evenodd"
-                            d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
-                            clip-rule="evenodd" />
-                    </svg>
-                </div>
-                <div class="table-cell p-2">Coin</div>
-                <div class="table-cell p-2">Price</div>
-                <div class="table-cell p-2">PnL</div>
-                <div class="table-cell p-2">Holdings</div>
-                <div class="table-cell py-2 pr-4 w-20">Actions</div>
-            </div>
+<div class="flex flex-col justify-center mx-5"> <!-- Only the mx-5 is needed if the below code is not used. -->
+    <!-- <div class="flex justify-between self-center text-center z-40 w-11/12 text-lg font-light bg-[#17014F] text-[#FFFDC9] border border-[#6F7CF1] rounded-lg -mt-5 p-1 px-2" style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3)">
+        <div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 -1 21 18" fill="currentColor">
+                <path fill-rule="evenodd"
+                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                    clip-rule="evenodd" />
+            </svg>
         </div>
-        <div class="table-row-group bg-[#230679]/30 text-lg text-[#FFFDC9]">
-            {% for asset in asset_entries %}
-            <div id="asset-{{ forloop.counter }}" class="table-row hover:bg-[#17014F]/60">
-                <div class="table-cell align-middle p-2">🦀</div>
-                <div class="table-cell align-middle p-2">{{ asset.name }}</div>
-                <div id="asset-price" class="table-cell align-middle p-2">{{ asset.price_at_purchase }}</div>
-                <div class="table-cell align-middle p-2">[CG API]</div>
-                <div class="table-cell p-2">
-                    <div id="asset-value"></div>
-                    <div id="asset-quantity">{{ asset.quantity }}</div>
-                </div>
-                <div class="table-cell align-middle p-2">
-                    <!-- Edit -->
-                    <a href="{% url 'asset_edit' asset.id %}" class="flex flex-col">
-                        <button type="submit" id="edit-button"
-                            class="self-center text-gray-400 hover:bg-gray-200 hover:text-gray-900">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                            </svg>
-                        </button>
-                    </a>
+        <div>
+            Coin
+        </div>
+        <div>
+            Price
+        </div>
+        <div>
+            PnL
+        </div>
+        <div>
+            Holdings
+        </div>
+        <div>
+            Actions
+        </div>
+    </div> -->
+    <div class="rounded-2xl shadow-md overflow-x-auto border border-[#6F7CF1]/40 text-[#FFFDC9] font-light"> <!--Border will work for whole table but does not work for individual row on line 15. Must be a tailwind thing. This will probably end up being it's own div due to overlapping div design from Figma. -->
+        <div class="table w-full">
+            <div class="table-header-group bg-[#17014F] text-xl">
+                <div class="table-row"> <!--Is this needed? -->
+                    <!-- TODO: Fix symbol icon positioning -->
+                    <div class="table-cell pl-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 -1 21 18" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <div class="table-cell p-2">Coin</div>
+                    <div class="table-cell p-2">Price</div>
+                    <div class="table-cell p-2">PnL</div>
+                    <div class="table-cell p-2">Holdings</div>
+                    <div class="table-cell py-2 pr-4 w-20">Actions</div>
                 </div>
             </div>
-            {% endfor %}
+            <div class="table-row-group bg-[#230679]/30 text-lg text-[#FFFDC9]">
+                {% for asset in asset_entries %}
+                <div id="asset-{{ forloop.counter }}" class="table-row hover:bg-[#17014F]/60">
+                    <div class="table-cell align-middle p-2">🦀</div>
+                    <div class="table-cell align-middle p-2">{{ asset.name }}</div>
+                    <div id="asset-price" class="table-cell align-middle p-2">{{ asset.price_at_purchase }}</div>
+                    <div class="table-cell align-middle p-2">[CG API]</div>
+                    <div class="table-cell p-2">
+                        <div id="asset-value"></div>
+                        <div id="asset-quantity">{{ asset.quantity }}</div>
+                    </div>
+                    <div class="table-cell align-middle p-2">
+                        <!-- Edit -->
+                        <a href="{% url 'asset_edit' asset.id %}" class="flex flex-col">
+                            <button type="submit" id="edit-button"
+                                class="self-center text-gray-400 hover:bg-gray-200 hover:text-gray-900">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                </svg>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
         </div>
     </div>
-</div>
-<!-- Add token -->
-<div class="flex justify-center mt-10 text-lg">
-    <button id="addTokenButton"
-        class="px-4 py-1 hover:bg-[#01013D]/10 hover:text-white rounded-2xl bg-[#01013D] border border-[#6F7CF1] text-slate-300">+ Add Token</button>
+    <!-- Add token -->
+    <div class="flex justify-center mt-10 text-lg">
+        <button id="addTokenButton"
+            class="px-4 py-1 hover:bg-[#01013D]/10 hover:text-white rounded-full bg-[#01013D] border border-[#6F7CF1] text-[#FFFDC9]">+ Add Token</button>
+    </div>
 </div>
 
 <!-- Add Token Modal -->
@@ -117,11 +162,6 @@
         </div>
     </div>
 </div>
-
-<!-- Portfolio Donut Chart --> 
-<div id="donut-chart">
-</div>
-<script src="https://d3js.org/d3.v7.min.js"></script>
 
 <script>
     // Donut Chart
