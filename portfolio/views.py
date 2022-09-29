@@ -36,6 +36,8 @@ class PortfolioPageView(CreateView):
 
     def get(self, request):
         asset_entries = AssetEntry.objects.all()
+        # TODO - Need to make this update based on the current price from Coingecko
+        # NOT the cost basis 
         balance = AssetEntry.objects.aggregate(total=Sum('cost_basis'))
 
         # Get token list from Coingecko
@@ -97,7 +99,7 @@ class MarketcapPageView(TemplateView):
                 else:
                     self.price = f"${self.price:.7f}"
                 # self.one_hour_performance = f"{asset[index]['price_change_percentage_1h_in_currency']:.1f}%"
-                self.one_day_performance = f"{asset[index]['price_change_percentage_24h']:.1f}%"
+                self.one_day_performance = asset[index]['price_change_percentage_24h']
                 # self.seven_day_performance = f"{asset[index]['price_change_percentage_7d']:.1f}%"
                 self.one_day_volume = f"{asset[index]['total_volume']:,}"
                 self.marketcap = f"{asset[index]['market_cap']:,}"

@@ -21,26 +21,31 @@
             </div>
         </div>
         <div class="table-row-group bg-[#230679]/30 text-lg">
-            <!-- <div class="table-row hover:bg-slate-200">
-                <div class="table-cell p-2">1</div>
-                {% if button_pressed %}
-                    <div class="table-cell p-2">🐳 {{ asset_name }}</div>
-                    <div class="table-cell p-2">{{ asset_price }}</div>
-                {% endif %}
-                <div class="table-cell p-2">$300,000,000</div>
-                <div class="table-cell p-2">5%</div>
-                <div class="table-cell p-2">$25,000,000</div>
-            </div> -->
             {% for token in token_list%}
             <div class="table-row hover:bg-[#17014F]/60">
                 <div class="table-cell p-2">{{ token.rank }}</div>
                 <div class="table-cell p-2">{{ token.name }}</div>
                 <div class="table-cell p-2">{{ token.price }}</div>
                 <!-- <div class="table-cell p-2">{{ token.one_hour_performance }}</div> -->
-                <div class="table-cell p-2">{{ token.one_day_performance }}</div>
+                <!-- Negative performance -->
+                {% if token.one_day_performance < -0.001 %}
+                    <div class="table-cell p-2 text-red-500">
+                        {{ token.one_day_performance|floatformat:"2g" }}%
+                    </div>
+                <!-- Positive performance -->
+                {% elif token.one_day_performance > 0.001 %}
+                    <div class="table-cell p-2 text-lime-400">
+                        +{{ token.one_day_performance|floatformat:"2g" }}%
+                    </div>
+                <!-- Near zero performance -->
+                {% elif token.one_day_performance > -0.001 and token.one_day_performance < 0.001 %}
+                    <div class="table-cell p-2 ">
+                        +{{ token.one_day_performance|floatformat:"2g" }}%
+                    </div>
+                {% endif %}
                 <!-- <div class="table-cell p-2">{{ token.seven_day_performance }}</div> -->
-                <div class="table-cell p-2">{{ token.one_day_volume }}</div>
-                <div class="table-cell p-2">{{ token.marketcap }}</div>
+                <div class="table-cell p-2">${{ token.one_day_volume }}</div>
+                <div class="table-cell p-2">${{ token.marketcap }}</div>
             </div>
             {% endfor %}
         </div>
