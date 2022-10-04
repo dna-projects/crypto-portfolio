@@ -1,26 +1,25 @@
 {% extends "entry-base.html" %}
 {% block content %}
-<div class="self-center text-lg font-bold m-3">
-    Apefolio
+{% load static %}
+
+<div class="flex justify-center">
+    <img src="{% static 'images/apelogotext.svg' %}" alt="logo" class="w-5/6">
 </div>
 <form method="post" action="" class="flex flex-col mb-0">
     {% csrf_token %}
-    <label class="block text-sm font-medium text-gray-900">Username</label>
+    <label class="block text-sm font-light text-[#FFFDC9]">Username</label>
     <div class='my-3'>
         {{ form.username }}
     </div>
-    <label class="block text-sm font-medium text-gray-900">Password</label>
+    <label class="block text-sm font-light text-[#FFFDC9]">Password</label>
     <div class='my-3'>
         {{ form.password }}
     </div>
-    <!-- <div class="m-3">
-        <input type="password" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full p-2.5" placeholder="Password" required>
-    </div> -->
-    <button type="submit" class="text-lg hover:bg-gray-600 hover:text-white rounded-2xl bg-gray-800 text-slate-300 m-5 px-4 py-1">Login</button>
+    <button type="submit" class="text-lg hover:bg-[#454570] hover:text-white rounded-full bg-[#01013D] border border-[#6F7CF1] text-[#FFFDC9] m-5 px-4 py-1">Login</button>
 </form>
-<hr class="w-full" /> <!-- Dividing line -->
+<hr class="w-full border-t border-[#FFFDC9]" /> <!-- Dividing line -->
 <div class="flex justify-center">
-    <button class="text-gray-800 mt-3 hover:text-gray-400"><a href="{% url 'registration' %}">Register</a></button>
+    <button class="text-[#6F7CF1] font-medium mt-3 hover:text-gray-400"><a href="{% url 'registration' %}">Register</a></button>
 </div>
 {% endblock content %}
 
