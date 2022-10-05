@@ -10,7 +10,7 @@
             <div class="self-center w-32 text-lg border bg-[#17014F] border-[#6F7CF1] rounded-lg p-1" style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3)">
                 Balance
             </div>
-            <div class="text-4xl overflow-hidden m-7">
+            <div class="text-4xl overflow-hidden tracking-wider m-7">
                 ${{ balance.total|floatformat:'2g' }}
             </div>
         </div>
@@ -57,7 +57,7 @@
 
             <div id="assets" class="table-row-group bg-[#230679]/30 text-lg text-[#FFFDC9]">
                 {% for asset in asset_entries %}
-                <div id="asset-{{ forloop.counter }}" class="table-row hover:bg-[#17014F]/60">
+                <div id="asset-{{ forloop.counter }}" class="table-row hover:bg-[#17014F]/60 tracking-wider">
                     <div class="table-cell align-middle p-2">🦀</div>
                     <div class="table-cell align-middle p-2">{{ asset.name }}</div>
                     <div id="asset-price" class="table-cell align-middle p-2">
@@ -82,7 +82,7 @@
                         <!-- Edit -->
                         <a href="{% url 'asset_edit' asset.id %}" class="flex flex-col">
                             <button type="submit" id="edit-button"
-                                class="self-center text-gray-400 hover:bg-gray-200 hover:text-gray-900">
+                                class="self-center text-gray-400 hover:bg-[#454570] rounded-lg hover:text-gray-900">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                                     stroke="currentColor" stroke-width="2">
                                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -99,7 +99,7 @@
     <!-- Add token -->
     <div class="flex justify-center mt-10 text-lg">
         <button id="addTokenButton"
-            class="px-4 py-1 hover:bg-[#01013D]/10 hover:text-white rounded-full bg-[#01013D] border border-[#6F7CF1] text-[#FFFDC9]">+ Add Token</button>
+            class="px-4 py-1 hover:bg-[#454570] hover:text-white rounded-full bg-[#01013D] border border-[#6F7CF1] text-[#FFFDC9]">+ Add Token</button>
     </div>
 </div>
 
@@ -108,7 +108,7 @@
     class="backdrop-blur-sm bg-black/70 hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 w-full h-modal md:h-full justify-center items-center"
     aria-modal="true">
     <div class="relative p-4 w-full max-w-md h-full md:h-auto">
-        <div class="relative bg-white rounded-lg">
+        <div class="relative bg-[#230679]/60 border border-[#6F7CF1]/40 rounded-lg">
             <!-- Close button -->
             <button id="add-close" type="button"
                 class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center">
@@ -118,29 +118,29 @@
                     </path>
                 </svg>
             </button>
-            <div class="rflex flex-col py-6 px-6 lg:px-8">
-                <h3 class="self-center font-semibold my-5 text-xl text-gray-900">Enter New Token Information</h3>
+            <div class="rflex flex-col text-[#FFFDC9] py-6 px-6 lg:px-8">
+                <h3 class="self-center font-light my-5 text-xl">Enter New Token Information</h3>
                 <!-- Form start -->
                 <form method="post" class="" action="">
                     {% csrf_token %}
-                    <label class="block mb-1 mt-6 text-sm font-medium text-gray-900">Token Name</label>
+                    <label class="block mb-1 mt-6 text-sm font-light">Token Name</label>
                     <div class=''>
                         {{ form.name }}
                     </div>
                     {{ tokens|json_script:"token-data" }}
                     {{ form.coingecko_id }}
-                    <label class="block mb-1 mt-4 text-sm font-medium text-gray-900">Cost Basis</label>
+                    <label class="block mb-1 mt-4 text-sm font-light">Cost Basis</label>
                     <div class="relative">
                         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                             <span class="text-gray-500 sm:text-sm"> $ </span>
                         </div>
                         {{ form.cost_basis }}
                     </div>
-                    <label class="block mb-1 mt-4 text-sm font-medium text-gray-900">Quantity</label>
+                    <label class="block mb-1 mt-4 text-sm font-light">Quantity</label>
                     <div class="">
                         {{ form.quantity }}
                     </div>
-                    <label class="block mb-1 mt-4 text-sm font-medium text-gray-900">Price</label>
+                    <label class="block mb-1 mt-4 text-sm font-light">Price</label>
                     <div class="relative">
                         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                             <span class="text-gray-500 sm:text-sm"> $ </span>
@@ -149,7 +149,7 @@
                     </div>
                     <div class="flex justify-center mt-6">
                         <button type="submit" id="submit-new-token"
-                            class="px-4 py-1 hover:bg-gray-600 hover:text-white rounded-2xl bg-gray-800 text-slate-300">Submit</button>
+                            class="px-4 py-1 hover:bg-[#454570] hover:text-white rounded-full bg-[#01013D] border border-[#6F7CF1] text-[#FFFDC9]">Submit</button>
                     </div>
                 </form>
             </div>

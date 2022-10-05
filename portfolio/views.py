@@ -120,15 +120,16 @@ class MarketcapPageView(TemplateView):
             mockup_mc = 15069857156
             self.marketcap = f"{mockup_mc:,}"
 
-
-    def get(self, request):        
+    def call_coin_gecko(self, page=None): # Other possible input?
         # Make request to coin gecko API for the token list up to top 15 tokens
         num_tokens = 15
         currency = 'usd'
         source_list = f"https://api.coingecko.com/api/v3/coins/markets?vs_currency={currency}&order=market_cap_desc&per_page={num_tokens}&page=1&sparkline=false"
         response = requests.get(source_list)
-        asset = json.loads(response.content)
-        
+        return json.loads(response.content)
+
+    def get(self, request):
+        asset = self.call_coin_gecko()
         token_list = []
         for index, _ in enumerate(asset):
             token_list.append(self.TokenAPI(index=index, request=asset, mockup=False))

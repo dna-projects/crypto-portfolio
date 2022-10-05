@@ -1,29 +1,29 @@
 {% extends "entry-base.html" %}
 {% block content %}
-<button class="place-self-start text-gray-600 hover:text-gray-400">
+<button class="place-self-start text-[#6F7CF1] hover:text-gray-400">
     <a href="{% url 'login' %}">Back</a>
 </button>
-<div class="self-center text-md font-bold mb-3">
+<div class="self-center text-lg text-[#FFFDC9] font-light mb-3">
     Registration
 </div>
-<form method="post" action="" class="flex flex-col p-1 mb-0">
+<form method="post" action="" class="flex flex-col p-1 mb-0 text-[#FFFDC9]">
     {% csrf_token %}
-    <label class="block text-sm font-medium text-gray-900">Username</label>
+    <label class="block text-sm font-light ">Username</label>
     <div class='my-3'> 
         {{ form.username }}
     </div>
-    <label class="block text-sm font-medium text-gray-900">Email</label>
+    <label class="block text-sm font-light">Email</label>
     <div class='my-3'>
         {{ form.email }}
     </div>
-    <label class="block text-sm font-medium text-gray-900">Password</label>
+    <label class="block text-sm font-light">Password</label>
     <div class='my-3'>
         {{ form.password1 }}
     </div>
-    <label class="block text-sm font-medium text-gray-900">Confirm Password</label>
+    <label class="block text-sm font-light">Confirm Password</label>
     <div class="my-3">
         {{ form.password2 }}
     </div>
-    <button type="submit" class="text-lg hover:bg-gray-600 hover:text-white rounded-2xl bg-gray-800 text-slate-300 m-5 px-4 py-1">Submit</button> <!-- button attributes from Flowbite -->
+    <button type="submit" class="text-lg hover:bg-[#454570] hover:text-white rounded-full bg-[#01013D] border border-[#6F7CF1] text-[#FFFDC9] m-5 px-4 py-1">Submit</button> <!-- button attributes from Flowbite -->
 </form>
 {% endblock content %}
