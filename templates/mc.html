@@ -22,24 +22,19 @@
         </div>
         <div class="table-row-group bg-[#230679]/30 text-lg">
             {% for token in token_list%}
-            <div class="table-row hover:bg-[#17014F]/60">
+            <div class="table-row hover:bg-[#17014F]/60 tracking-wider">
                 <div class="table-cell p-2">{{ token.rank }}</div>
                 <div class="table-cell p-2">{{ token.name }}</div>
                 <div class="table-cell p-2">{{ token.price }}</div>
                 <!-- <div class="table-cell p-2">{{ token.one_hour_performance }}</div> -->
                 <!-- Negative performance -->
-                {% if token.one_day_performance < -0.001 %}
+                {% if token.one_day_performance < 0 %}
                     <div class="table-cell p-2 text-red-500">
                         {{ token.one_day_performance|floatformat:"2g" }}%
                     </div>
                 <!-- Positive performance -->
-                {% elif token.one_day_performance > 0.001 %}
+                {% elif token.one_day_performance >= 0 %}
                     <div class="table-cell p-2 text-lime-400">
-                        +{{ token.one_day_performance|floatformat:"2g" }}%
-                    </div>
-                <!-- Near zero performance -->
-                {% elif token.one_day_performance > -0.001 and token.one_day_performance < 0.001 %}
-                    <div class="table-cell p-2 ">
                         +{{ token.one_day_performance|floatformat:"2g" }}%
                     </div>
                 {% endif %}
@@ -50,5 +45,16 @@
             {% endfor %}
         </div>
     </div>
+</div>
+<div id="page-nav" class="text-gray-400 pt-6">
+    <ol class="flex flex-row justify-center gap-3">
+        <li>Prev</li>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>Next</li>
+    </ol>
 </div>
 {% endblock main %}
