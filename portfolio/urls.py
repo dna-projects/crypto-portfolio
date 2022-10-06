@@ -14,6 +14,7 @@ urlpatterns = [
     path("p-coin-stats", PortfolioStatsPageView.as_view(), name="p-coin-stats"),
     # Marketcap related...
     path("mc", MarketcapPageView.as_view(), name="mc"),
+    path("mc/<int:num>/", MarketcapPageView.update, name="mc-update"),
     path("mc-coin-stats", MarketcapStatsPageView.as_view(), name="mc-coin-stats"),
     path("mc-bubble", MarketcapBubblePageView.as_view(), name="mc-bubble"),
 ]

@@ -67,7 +67,9 @@
     // Add pages (and number accordingly) to pages array
     for (let pageNum = 1; pageNum <= numOfPages; pageNum++) {
         let pageItem = document.createElement("li");
-        pageItem.innerHTML = `<button>${pageNum}</button>`
+        // TODO - Update this to append the page number to 
+        // the mc path -> /mc/1 for page 1 /mc/2 for page 2, etc...
+        pageItem.innerHTML = `<button><a href="{% url 'mc' %}">${pageNum}</a></button>`
         pages.push(pageItem);
     }
     // Place pages into list element
