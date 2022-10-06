@@ -8,7 +8,7 @@
         <a href="{% url 'portfolio' %}"><img src="{% static 'images/goback_icon.png' %}" alt="goback_icon" class="w-8"></a>
     </button>
     <div class="flex flex-col py-6 px-6 lg:px-8">
-        <h3 class="self-center z-40 font-light text-xl text-[#FFFDC9] bg-[#17014F] border border-[#6F7CF1] rounded-lg px-5 py-1 -mb-5">Update Token Information</h3>
+        <h3 class="self-center z-30 font-light text-xl text-[#FFFDC9] bg-[#17014F] border border-[#6F7CF1] rounded-lg px-5 py-1 -mb-5">Update Token Information</h3>
         <form method="post" action="">
             {% csrf_token %}
             <div class="grid grid-cols-8 gap-4 font-light bg-[#230679]/30 border border-[#6F7CF1]/40 rounded-2xl shadow-md p-5 py-10">
@@ -60,7 +60,7 @@
 
     <!-- Delete Modal -->
     <div id="delete-modal"
-        class="backdrop-blur-sm bg-black/70 hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 w-full h-modal md:h-full justify-center items-center"
+        class="z-40 backdrop-blur-sm bg-black/70 hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 w-full h-modal md:h-full justify-center items-center"
         aria-modal="true">
         <div class="relative p-4 w-full max-w-md h-full md:h-auto">
             <div class="relative bg-white rounded-lg">

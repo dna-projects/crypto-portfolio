@@ -1,7 +1,9 @@
 {% extends "entry-base.html" %}
 {% block content %}
-<button class="place-self-start text-[#6F7CF1] hover:text-gray-400">
-    <a href="{% url 'login' %}">Back</a>
+{% load static %}
+
+<button class="place-self-start hover:bg-[#454570] rounded-full">
+    <a href="{% url 'login' %}"><img src="{% static 'images/goback_icon.png' %}" alt="goback_icon" class="w-8"></a>
 </button>
 <div class="self-center text-lg text-[#FFFDC9] font-light mb-3">
     Registration

@@ -2,8 +2,8 @@
 {% block content %}
 {% load static %}
 
-<div class="flex justify-center">
-    <img src="{% static 'images/apelogotext.svg' %}" alt="logo" class="w-5/6 pb-8">
+<div class="flex justify-center pb-8">
+    <a href="{% url 'landing' %}"><img src="{% static 'images/apelogotext.svg' %}" alt="logo" class="w-72"></a>
 </div>
 <form method="post" action="" class="flex flex-col mb-0">
     {% csrf_token %}
