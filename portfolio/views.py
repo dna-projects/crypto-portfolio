@@ -120,7 +120,7 @@ class MarketcapPageView(TemplateView):
             mockup_mc = 15069857156
             self.marketcap = f"{mockup_mc:,}"
 
-    def call_coin_gecko(self, page=1): # Other possible input?
+    def call_coin_gecko(self, page=1):
         # Make request to coin gecko API for the token list up to top 15 tokens
         num_tokens = 15
         currency = 'usd'
@@ -128,18 +128,27 @@ class MarketcapPageView(TemplateView):
         response = requests.get(source_list)
         return json.loads(response.content)
 
-    def get(self, request):
-        asset = self.call_coin_gecko(2)
+    # Helper class for page to store the page num and the template can access it
+    class Page:
+        def __init__(self, num, value):
+            self.num = num
+            self.value = value
+
+    def get(self, request, page_num=1):
+        asset = self.call_coin_gecko(page_num)
         token_list = []
+        # TODO - I set an arbitrary limit to 300 pages but not sure what it should be 
+        # set to. Maybe however many tokens are listed in the coingecko database?
+        page_range = 10
+        pages = [self.Page(num, num) for num in range(page_num, page_num + page_range)] + [self.Page(11, '»')]
+
+        # if page_num % 5 == 0 -> user is on the last page before needing to increment 
+        # all the pages
+
         for index, _ in enumerate(asset):
             token_list.append(self.TokenAPI(index=index, request=asset, mockup=False))
 
-        return render(request, self.template_name, {'token_list': token_list})
-
-    # TODO - This is buggy right now because the return isn't working
-    def update(self, request, num):
-        print("Updating page...")
-        return render(request, self.template_name)
+        return render(request, self.template_name, {'token_list': token_list, 'pages': pages})
 
 class MarketcapStatsPageView(TemplateView):
     template_name = 'mc-coin-stats.html'
