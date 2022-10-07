@@ -48,20 +48,29 @@
 </div>
 <div id="page-nav" class="text-gray-400 pt-6">
     <ol class="flex flex-row justify-center gap-1">
-        <li class="hover:text-white border hover:border-white border-[#6F7CF1]/40 rounded p-1">
+        {% comment %} <li class="hover:text-white border hover:border-white border-[#6F7CF1]/40 rounded p-1">
             <button>«</button>
-        </li>
+        </li> {% endcomment %}
         <!-- JS programmatically adds the pages here-->
         {% for page in pages %}
-            <li class="hover:text-white border hover:border-white border-[#6F7CF1]/40 rounded p-1">
-                <button>
-                    <a href="{% url 'mc-update' page.num %}">{{ page.value }}</a>
-                </button>
-            </li>
+            {% if active_page == page.num %}
+                <li class="font-semibold hover:text-white border hover:border-white border-yellow-400 rounded p-1">
+                    <button>
+                        <a href="{% url 'mc-update' page.num %}">{{ page.value }}</a>
+                    </button>
+                </li>
+            {% else %}
+                <li class="hover:text-white border hover:border-white border-[#6F7CF1]/40 rounded p-1">
+                    <button>
+                        <a href="{% url 'mc-update' page.num %}">{{ page.value }}</a>
+                    </button>
+                </li>
+            {% endif %}
+            
         {% endfor %}
-        <li class="hover:text-white border hover:border-white border-[#6F7CF1]/40 rounded p-1">
+        <!--<li class="hover:text-white border hover:border-white border-[#6F7CF1]/40 rounded p-1">
             <button>»</button>
-        </li>
+        </li>-->
     </ol>
 </div>
 <script>
