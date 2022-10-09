@@ -140,7 +140,7 @@ class MarketcapPageView(TemplateView):
         # TODO - I set an arbitrary limit to 300 pages but not sure what it should be 
         # set to. Maybe however many tokens are listed in the coingecko database?
         page_range = 9
-        pages = [self.Page(page_num - 1, '«') if page_num != 1 else self.Page(0, '«')] + \
+        pages = [self.Page(page_num - 1, '«') if page_num != 1 else self.Page(1, '«')] + \
                 [self.Page(num, num) for num in range(page_num, page_num + page_range)] + \
                 [self.Page(page_num + page_range, '»')]
         
