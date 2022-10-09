@@ -63,7 +63,7 @@
         class="z-40 backdrop-blur-sm bg-black/70 hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 w-full h-modal md:h-full justify-center items-center"
         aria-modal="true">
         <div class="relative p-4 w-full max-w-md h-full md:h-auto">
-            <div class="relative bg-white rounded-lg">
+            <div class="relative bg-[#230679]/60 text-[#FFFDC9] border border-[#6F7CF1]/40 rounded-lg">
                 <!-- Close button -->
                 <button id="delete-close" type="button"
                     class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center">
@@ -74,13 +74,13 @@
                     </svg>
                 </button>
                 <div class="rflex flex-col py-6 px-6 lg:px-8">
-                    <h3 class="self-center font-semibold mt-5 mb-4 text-xl text-gray-900">You are about to delete this
+                    <h3 class="self-center mt-5 mb-4 text-xl">You are about to delete this
                         entry.</h3>
-                    <h3 class="self-center font-semibold mb-10 text-xl text-gray-900">Do you want to continue?</h3>
+                    <h3 class="self-center mb-10 text-xl">Do you want to continue?</h3>
                     <form class="flex place-content-end" method="post">
                         {% csrf_token %}
                         <button type="button" id="delete-cancel"
-                            class="mr-2 px-4 py-1 hover:bg-gray-400 hover:text-white rounded-2xl bg-gray-500 text-white">Cancel</button>
+                            class="mr-2 px-4 py-1 hover:bg-[#454570] hover:text-white rounded-full bg-[#01013D] border border-[#6F7CF1] text-[#FFFDC9]">Cancel</button>
                         <button type="submit" name="delete" value="delete"
                             class="px-4 py-1 hover:bg-red-500 hover:text-white rounded-2xl bg-red-600 text-white">Delete</button>
                     </form>

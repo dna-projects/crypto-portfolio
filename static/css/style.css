@@ -2,9 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Bottom border for portfolio table header */
 #asset-1::after {
     width: auto;
     height: 5px;
     background: white;
     /* border-left: 5px solid white; */
+}
+
+/* breakpoint for overall portfolio balance. Does not currently work. */
+@media (min-width: 1830px) {
+    .customBreakpoint {
+        font-size: 10px;
+    }
 }
