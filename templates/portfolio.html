@@ -129,23 +129,23 @@
                     </div>
                     {{ tokens|json_script:"token-data" }}
                     {{ form.coingecko_id }}
+                    <label class="block mb-1 mt-4 text-sm font-light">Quantity</label>
+                    <div class="">
+                        {{ form.quantity }}
+                    </div>
+                    <label class="block mb-1 mt-4 text-sm font-light">Token Price</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <span class="text-gray-500 sm:text-sm"> $ </span>
+                        </div>
+                        {{ form.price_at_purchase }}
+                    </div>
                     <label class="block mb-1 mt-4 text-sm font-light">Cost Basis</label>
                     <div class="relative">
                         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                             <span class="text-gray-500 sm:text-sm"> $ </span>
                         </div>
                         {{ form.cost_basis }}
-                    </div>
-                    <label class="block mb-1 mt-4 text-sm font-light">Quantity</label>
-                    <div class="">
-                        {{ form.quantity }}
-                    </div>
-                    <label class="block mb-1 mt-4 text-sm font-light">Price</label>
-                    <div class="relative">
-                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <span class="text-gray-500 sm:text-sm"> $ </span>
-                        </div>
-                        {{ form.price_at_purchase }}
                     </div>
                     <div class="flex justify-center mt-6">
                         <button type="submit" id="submit-new-token"
@@ -217,6 +217,8 @@
         }
     }
 
+    /* Add new token modal - grab list of tokens from Coingecko */ 
+    
     document.querySelector('#id_name').addEventListener('change', updateCoingeckoId);
 
     function updateCoingeckoId() {
@@ -226,6 +228,25 @@
 
         coingeckoId.value = tokens[tokenSelected];
         console.log(coingeckoId.value);
+    }
+
+    /* Add new token modal - Update Cost Basis input automatically based on 
+    calculation of quantity * token-price 
+    */
+    let quantity = document.querySelector('#id_quantity');
+    let tokenPrice = document.querySelector('#id_price_at_purchase');
+    let costBasis = document.querySelector('#id_cost_basis');
+    quantity.addEventListener('input', updateCostBasis);
+    tokenPrice.addEventListener('input', updateCostBasis);
+    function updateCostBasis() {
+        if (quantity.value.length > 0 && tokenPrice.value.length > 0) {
+            let amount = parseFloat(quantity.value);
+            let price = parseFloat(tokenPrice.value);
+            costBasis.value = (amount * price).toFixed(2);
+        }
+        else {
+            costBasis.value = '';
+        }
     }
 
     /* Calculate asset value and total balance*/

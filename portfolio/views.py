@@ -137,8 +137,6 @@ class MarketcapPageView(TemplateView):
     def get(self, request, page_num=1):
         asset = self.call_coin_gecko(page_num)
         token_list = []
-        # TODO - I set an arbitrary limit to 300 pages but not sure what it should be 
-        # set to. Maybe however many tokens are listed in the coingecko database?
         page_range = 9
         page_margin = 4
         pages = []
@@ -153,9 +151,6 @@ class MarketcapPageView(TemplateView):
             pages = [self.Page(page_num - 1, '«')] + \
                     [self.Page(num, num) for num in range(page_num - page_margin, page_num + page_margin + 1)] + \
                     [self.Page(page_num + 1, '»')]
-
-        # if page_num % 5 == 0 -> user is on the last page before needing to increment
-        # all the pages
 
         for index, _ in enumerate(asset):
             token_list.append(self.TokenAPI(index=index, request=asset, mockup=False))
