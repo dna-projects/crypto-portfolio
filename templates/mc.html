@@ -54,31 +54,21 @@
         <!-- JS programmatically adds the pages here-->
         {% for page in pages %}
             {% if active_page == page.num %}
-                {% if page.num == 1 and page.value == '«' %}
-                    <li class="hidden font-semibold hover:text-white border hover:border-white border-yellow-400 rounded p-1">
-                        <button>
-                            <a href="{% url 'mc-update' page.num %}">{{ page.value }}</a>
-                        </button>
-                    </li>
-                {% else %}
-                    <li class="font-semibold hover:text-white border hover:border-white border-yellow-400 rounded p-1">
+                <li class="font-semibold hover:text-white border hover:border-white border-yellow-400 rounded p-1">
+                    <button>
+                        <a href="{% url 'mc-update' page.num %}">{{ page.value }}</a>
+                    </button>
+                </li>
+            {% else %}
+                {% if page.num > 0 %}
+                    <li class="hover:text-white border hover:border-white border-[#6F7CF1]/40 rounded p-1">
                         <button>
                             <a href="{% url 'mc-update' page.num %}">{{ page.value }}</a>
                         </button>
                     </li>
                 {% endif %}
-            {% else %}
-                <li class="hover:text-white border hover:border-white border-[#6F7CF1]/40 rounded p-1">
-                    <button>
-                        <a href="{% url 'mc-update' page.num %}">{{ page.value }}</a>
-                    </button>
-                </li>
             {% endif %}
-            
         {% endfor %}
-        <!--<li class="hover:text-white border hover:border-white border-[#6F7CF1]/40 rounded p-1">
-            <button>»</button>
-        </li>-->
     </ol>
 </div>
 <script>
