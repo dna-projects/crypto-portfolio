@@ -13,6 +13,6 @@
 /* breakpoint for overall portfolio balance. Does not currently work. */
 @media (min-width: 1830px) {
     .customBreakpoint {
-        font-size: 10px;
+        width: 50%;
     }
 }

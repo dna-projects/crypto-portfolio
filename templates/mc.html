@@ -60,17 +60,15 @@
                     </button>
                 </li>
             {% else %}
-                <li class="hover:text-white border hover:border-white border-[#6F7CF1]/40 rounded p-1">
-                    <button>
-                        <a href="{% url 'mc-update' page.num %}">{{ page.value }}</a>
-                    </button>
-                </li>
+                {% if page.num > 0 %}
+                    <li class="hover:text-white border hover:border-white border-[#6F7CF1]/40 rounded p-1">
+                        <button>
+                            <a href="{% url 'mc-update' page.num %}">{{ page.value }}</a>
+                        </button>
+                    </li>
+                {% endif %}
             {% endif %}
-
         {% endfor %}
-        <!--<li class="hover:text-white border hover:border-white border-[#6F7CF1]/40 rounded p-1">
-            <button>»</button>
-        </li>-->
     </ol>
 </div>
 <script>

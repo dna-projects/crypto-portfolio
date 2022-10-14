@@ -140,12 +140,21 @@ class MarketcapPageView(TemplateView):
         # TODO - I set an arbitrary limit to 300 pages but not sure what it should be 
         # set to. Maybe however many tokens are listed in the coingecko database?
         page_range = 9
-        pages = [self.Page(page_num - 1, '«') if page_num != 1 else self.Page(0, '«')] + \
-                [self.Page(num, num) for num in range(page_num, page_num + page_range)] + \
-                [self.Page(page_num + page_range, '»')]
-        
+        page_margin = 4
+        pages = []
 
-        # if page_num % 5 == 0 -> user is on the last page before needing to increment 
+        # For pages 1-5
+        if page_num <= 5:
+            pages = [self.Page(page_num - 1, '«') if page_num != 1 else -1] + \
+                    [self.Page(num, num) for num in range(1, page_range + 1)] + \
+                    [self.Page(page_num + 1, '»')]
+        # Pages 6 and up
+        else:
+            pages = [self.Page(page_num - 1, '«')] + \
+                    [self.Page(num, num) for num in range(page_num - page_margin, page_num + page_margin + 1)] + \
+                    [self.Page(page_num + 1, '»')]
+
+        # if page_num % 5 == 0 -> user is on the last page before needing to increment
         # all the pages
 
         for index, _ in enumerate(asset):
