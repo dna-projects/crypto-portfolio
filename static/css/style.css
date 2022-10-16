@@ -16,3 +16,8 @@
         width: 50%;
     }
 }
+
+/* Login input boxes. This is still not working and can be removed */
+.customInput {
+    width: 100px !important;
+}
