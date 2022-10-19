@@ -10,20 +10,16 @@
     }
 </style>
 
-<div class="">
-    <div class="flex justify-center h-screen">
+<div class="flex justify-center h-screen">
         <!-- Project Title/Logo -->
-        <div class="flex flex-col self-center m-20">
-            <img src="{% static 'images/apelogotext.svg' %}" alt="logo" class="w-4/6">
-            <div class="text-white text-lg mt-7 mb-7 ml-16">Don't miss out...manage your trades on the blockchain.</div>
-            <div class="flex ml-16">
-                <button><a href="{% url 'mc' %}" class="flex justify-center hover:bg-[#454570] text-[#FFFDC9] hover:text-white rounded-full bg-[#01013D] border border-[#6F7CF1] drop-shadow w-36 py-2 mr-2">Market Cap</a>
-                </button>
-                <button><a href="{% url 'login' %}" class="flex justify-center hover:bg-[#454570] text-[#FFFDC9] hover:text-white rounded-full bg-[#01013D] border border-[#6F7CF1] drop-shadow w-36 py-2 ml-2">Login/Register</a>
-                </button>
-            </div>
+    <div class="flex flex-col justify-center self-center m-20">
+        <img src="{% static 'images/apelogotext.svg' %}" alt="logo" class="self-center w-9/12">
+        <div class="self-center text-white text-xl mt-7 mb-7">Don't miss out...manage your trades on the blockchain.</div>
+        <div class="flex self-center">
+            <button><a href="{% url 'mc' %}" class="flex justify-center hover:bg-[#454570] text-[#FFFDC9] hover:text-white rounded-full bg-[#01013D] border border-[#6F7CF1] drop-shadow w-36 py-2 mr-2">Market Cap</a>
+            </button>
+            <button><a href="{% url 'login' %}" class="flex justify-center hover:bg-[#454570] text-[#FFFDC9] hover:text-white rounded-full bg-[#01013D] border border-[#6F7CF1] drop-shadow w-36 py-2 ml-2">Login/Register</a>
+            </button>
         </div>
-        <!-- Project Image -->
-        <div class="self-center m-20">{IMAGE}</div>
     </div>
 </div>

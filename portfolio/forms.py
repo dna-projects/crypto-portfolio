@@ -49,17 +49,25 @@ class UserRegistrationForm(UserCreationForm):
 # Login Form
 
 class UserLoginForm(AuthenticationForm):
-    class Meta:
-        model = User
-        fields = ("username" , "password")
-        widgets = {
-            'username': TextInput(attrs={ 
-                'class': 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight'
-                }),
-            'password': PasswordInput(attrs={ 
-                'class': 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight'
-                }),
-        }
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['username'].widget.attrs.update(
+            {'class': 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-600'}
+        )
+        self.fields['password'].widget.attrs.update(
+            {'class': 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:border-blue-600'}
+        )
+    # class Meta:
+    #     model = User
+    #     fields = ("username" , "password")
+    #     widgets = {
+    #         'username': TextInput(attrs={ 
+    #             'class': 'shadow appearance-none border rounded w-48px py-2 px-3 text-gray-700 leading-tight'
+    #             }),
+    #         'password': PasswordInput(attrs={ 
+    #             'class': 'shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight'
+    #             }),
+    #     }
 
 # New Token
 class NewTokenForm(ModelForm):

@@ -1,11 +1,12 @@
 {% extends "entry-base.html" %}
 {% block content %}
 {% load static %}
+<link rel="stylesheet" type="text/css" href="{% static '/css/style.css' %}">
 
 <div class="flex justify-center pb-8">
     <a href="{% url 'landing' %}"><img src="{% static 'images/apelogotext.svg' %}" alt="logo" class="w-72"></a>
 </div>
-<form method="post" action="" class="flex flex-col mb-0">
+<form method="post" action="" class="flex flex-col mb-0 px-2">
     {% csrf_token %}
     <label class="block text-sm font-light text-[#FFFDC9]">Username</label>
     <div class='my-3'>
