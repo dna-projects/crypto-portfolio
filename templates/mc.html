@@ -2,7 +2,7 @@
 {% block main %}
 <div class="flex justify-between">
     <div class="pb-5 text-xl text-[#FFFDC9]">Cryptocurrency prices by Market Cap</div>
-    <input placeholder=" Search" class="bg-blue-100 bg-opacity-20 rounded-lg p-1 mb-5">
+    <input placeholder="Search" class="bg-blue-100 bg-opacity-20 rounded-lg p-1 mb-5">
 </div>
 <!-- Asset Entries Table -->
 <div class="rounded-2xl shadow-md overflow-x-auto border border-[#6F7CF1]/40 text-[#FFFDC9] font-light">
@@ -46,12 +46,8 @@
         </div>
     </div>
 </div>
-<div id="page-nav" class="text-gray-400 pt-6">
-    <ol class="flex flex-row justify-center gap-1">
-        {% comment %} <li class="hover:text-white border hover:border-white border-[#6F7CF1]/40 rounded p-1">
-            <button>«</button>
-        </li> {% endcomment %}
-        <!-- JS programmatically adds the pages here-->
+<div id="page-nav" class="flex flex-row items-center justify-center text-gray-400 pt-6 gap-3">
+    <ol class="flex flex-row gap-1">
         {% for page in pages %}
             {% if active_page == page.num %}
                 <li class="font-semibold hover:text-white border hover:border-white border-yellow-400 rounded p-1">
@@ -70,28 +66,10 @@
             {% endif %}
         {% endfor %}
     </ol>
+    <div class="flex gap-1">
+        <input type="text" placeholder="Go to page" class="w-24 bg-blue-100 bg-opacity-20 rounded p-1">
+        <button class="rounded-md bg-[#16004F] text-indigo-50 px-3">Go</button>
+    </div>
 </div>
-<script>
-    /*
-    // Grab parent div where the pages will be inserted into
-    let pageNav = document.querySelector('#page-nav > ol');
-    let firstItem = pageNav.firstChild;
-    let numOfPages = 5;
-    let pages = [];
-
-    // Add pages (and number accordingly) to pages array
-    for (let pageNum = 1; pageNum <= numOfPages; pageNum++) {
-        let pageItem = document.createElement("li");
-        // TODO - Update this to append the page number to 
-        // the mc path -> /mc/1 for page 1 /mc/2 for page 2, etc...
-        pageItem.innerHTML = `<button><a href="{% url 'mc' %}">${pageNum}</a></button>`
-        pages.push(pageItem);
-    }
-    // Place pages into list element
-    pages.forEach(page => {
-        page.classList.add("hover:text-white", "border", "hover:border-white", "border-[#6F7CF1]/40", "rounded", "p-1");
-        pageNav.insertBefore(page, pageNav.lastElementChild);
-    });*/
-</script>
 {% endblock main %}
 
