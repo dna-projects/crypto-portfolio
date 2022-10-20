@@ -18,19 +18,19 @@
 
 <div class="flex flex-row justify-around w-screen h-screen">
         <!-- Project Title/Logo -->
-    <div class="grid grid-rows-3 w-96 ml-15">
+    <div class="grid grid-rows-3 w-[32rem] ml-15">
         <div>
             <img src="{% static 'images/apelogotext.svg' %}" alt="logo" class="w-64 mt-3 -ml-8">
         </div>
         <div class="flex flex-col self-center">
-            <div class="text-yellow-300 text-2xl font-bold">Sign up Today</div>
-            <div class="text-white text-4xl font-extrabold mt-3">Track Your Crypto Portfolio</div>
-            <div class="text-white text-xl italic mt-7 mb-7">Don't miss out...
+            <div class="text-yellow-300 text-3xl font-bold">Sign up Today</div>
+            <div class="text-white text-5xl font-extrabold mt-3">Track Your Crypto Portfolio</div>
+            <div class="text-white text-2xl font-light italic mt-7 mb-7">Don't miss out...
                 <br>Manage your trades on the blockchain.</br></div>
-            <div class="flex">
-                <button><a href="{% url 'mc' %}" class="flex justify-center buttonShadow hover:bg-[#454570] text-[#FFFDC9] hover:text-white rounded-full bg-[#01013D] w-36 py-2 mr-2">Market Cap</a>
+            <div class="flex gap-4">
+                <button><a href="{% url 'mc' %}" class="flex justify-center buttonShadow hover:bg-[#454570] text-[#FFFDC9] rounded-full bg-[#01013D] w-36 py-3">Market Cap</a>
                 </button>
-                <button><a href="{% url 'login' %}" class="flex justify-center buttonShadow hover:bg-[#454570] text-[#FFFDC9] hover:text-white rounded-full bg-[#01013D] w-36 py-2 ml-2">Login/Register</a>
+                <button><a href="{% url 'login' %}" class="flex justify-center buttonShadow hover:bg-[#454570] text-[#FFFDC9] rounded-full bg-[#01013D] w-36 py-3">Login/Register</a>
                 </button>
             </div>
         </div>
