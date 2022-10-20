@@ -1,5 +1,7 @@
 {% load static %}
 <script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" type="text/css" href="{% static '/css/style.css' %}">
+
 <style>
     body {
       background-image: url("{% static '/images/bg5_landing4.jpg' %}") !important;
@@ -10,16 +12,30 @@
     }
 </style>
 
-<div class="flex justify-center h-screen">
+<!-- <div>
+    <img src="{% static 'images/apelogotext.svg' %}" alt="logo" class="self-center w-72 ml-8 p-5">
+</div> -->
+
+<div class="flex flex-row justify-around w-screen h-screen">
         <!-- Project Title/Logo -->
-    <div class="flex flex-col justify-center self-center m-20">
-        <img src="{% static 'images/apelogotext.svg' %}" alt="logo" class="self-center w-9/12">
-        <div class="self-center text-white text-xl mt-7 mb-7">Don't miss out...manage your trades on the blockchain.</div>
-        <div class="flex self-center">
-            <button><a href="{% url 'mc' %}" class="flex justify-center hover:bg-[#454570] text-[#FFFDC9] hover:text-white rounded-full bg-[#01013D] border border-[#6F7CF1] drop-shadow w-36 py-2 mr-2">Market Cap</a>
-            </button>
-            <button><a href="{% url 'login' %}" class="flex justify-center hover:bg-[#454570] text-[#FFFDC9] hover:text-white rounded-full bg-[#01013D] border border-[#6F7CF1] drop-shadow w-36 py-2 ml-2">Login/Register</a>
-            </button>
+    <div class="grid grid-rows-3 w-96 ml-15">
+        <div>
+            <img src="{% static 'images/apelogotext.svg' %}" alt="logo" class="w-64 mt-3 -ml-8">
         </div>
+        <div class="flex flex-col self-center">
+            <div class="text-yellow-300 text-2xl font-bold">Sign up Today</div>
+            <div class="text-white text-4xl font-extrabold mt-3">Track Your Crypto Portfolio</div>
+            <div class="text-white text-xl italic mt-7 mb-7">Don't miss out...
+                <br>Manage your trades on the blockchain.</br></div>
+            <div class="flex">
+                <button><a href="{% url 'mc' %}" class="flex justify-center buttonShadow hover:bg-[#454570] text-[#FFFDC9] hover:text-white rounded-full bg-[#01013D] w-36 py-2 mr-2">Market Cap</a>
+                </button>
+                <button><a href="{% url 'login' %}" class="flex justify-center buttonShadow hover:bg-[#454570] text-[#FFFDC9] hover:text-white rounded-full bg-[#01013D] w-36 py-2 ml-2">Login/Register</a>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="self-center justify-center">
+        <img src="{% static 'images/portfolio_placeholder.png' %}" alt="logo" class="customShadow customWidth self-center rounded-2xl" >
     </div>
 </div>

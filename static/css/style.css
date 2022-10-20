@@ -16,3 +16,22 @@
         width: 50%;
     }
 }
+
+/* landing image drop shadow */
+.customShadow {
+    /* box-shadow: 6px 2px 15px black; */
+    /* box-shadow: 10px 16px 40px #111; This was the original we had on Tuesday */
+    box-shadow: 15px 15px 20px rgba(1, 1, 1, 0.6);
+}
+
+/* landing image width */
+
+.customWidth {
+    width: 650px;
+}
+
+/* button drop shadow */
+
+.buttonShadow {
+    box-shadow: 3px 3px 4px rgba(1, 1, 1, 0.4);
+}
