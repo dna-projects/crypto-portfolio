@@ -2,7 +2,30 @@
 {% block main %}
 <div class="flex justify-between">
     <div class="pb-5 text-xl text-[#FFFDC9]">Cryptocurrency prices by Market Cap</div>
-    <input placeholder="Search" class="bg-blue-100 bg-opacity-20 rounded-lg p-1 mb-5">
+    <div id="search-group" class="relative w-48">
+        <button id="search-btn" class="absolute">
+            <input placeholder="Search" class="bg-blue-100 bg-opacity-20 rounded-lg p-1 mb-5">
+        </button>
+        <!-- Search Modal -->
+        <div id="search-modal" class="hidden overflow-y-auto overflow-x-hidden absolute w-full h-modal" aria-modal="true">
+            <div class="relative p-4 w-full max-w-md h-full md:h-auto">
+                <div class="relative bg-[#230679] border border-[#6F7CF1]/40 rounded-lg">
+                    <!-- Close button -->
+                    <button id="search-close" type="button"
+                        class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center">
+                        <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z">
+                            </path>
+                        </svg>
+                    </button>
+                    <div class="rflex flex-col text-[#FFFDC9] py-6 px-6 lg:px-8">
+                        <input placeholder="Enter token name" class="bg-blue-100 bg-opacity-20 rounded-lg p-1 mb-5">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <!-- Asset Entries Table -->
 <div class="rounded-2xl shadow-md overflow-x-auto border border-[#6F7CF1]/40 text-[#FFFDC9] font-light">
@@ -71,5 +94,24 @@
         <button class="rounded-md bg-[#16004F] text-indigo-50 px-3">Go</button>
     </div>
 </div>
-{% endblock main %}
+<script>
+    function showSearch() {
+        const modal = document.getElementById("search-modal");
+        modal.style.display = "flex";
 
+        const closeBtn = document.getElementById("search-close");
+        closeBtn.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    }
+
+    const searchBtn = document.querySelector('#search-btn');
+    searchBtn.addEventListener('click', showSearch);
+</script>
+{% endblock main %}
