@@ -5,24 +5,24 @@
 <button class="place-self-start hover:bg-[#454570] rounded-full">
     <a href="{% url 'login' %}"><img src="{% static 'images/goback_icon.png' %}" alt="goback_icon" class="w-8"></a>
 </button>
-<div class="self-center text-lg text-[#FFFDC9] font-light mb-3">
+<div class="self-center text-lg text-[#FFFDC9] font-normal mb-3">
     Registration
 </div>
 <form method="post" action="" class="flex flex-col p-1 mb-0 text-[#FFFDC9]">
     {% csrf_token %}
-    <label class="block text-sm font-light ">Username</label>
+    <label class="block text-sm font-normal ">Username</label>
     <div class='my-3'> 
         {{ form.username }}
     </div>
-    <label class="block text-sm font-light">Email</label>
+    <label class="block text-sm font-normal">Email</label>
     <div class='my-3'>
         {{ form.email }}
     </div>
-    <label class="block text-sm font-light">Password</label>
+    <label class="block text-sm font-normal">Password</label>
     <div class='my-3'>
         {{ form.password1 }}
     </div>
-    <label class="block text-sm font-light">Confirm Password</label>
+    <label class="block text-sm font-normal">Confirm Password</label>
     <div class="my-3">
         {{ form.password2 }}
     </div>
