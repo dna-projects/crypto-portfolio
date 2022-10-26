@@ -3,8 +3,8 @@
 {% block main %}
 <link rel="stylesheet" type="text/css" href="{% static '/css/style.css' %}">
 <!--Balance & Graph Information -->
-<div class="w-1/4 mx-5">
-    <div class="text-center font-light bg-[#230679]/30 text-[#FFFDC9] border border-[#6F7CF1]/40 rounded-2xl shadow-md">
+<div class="flex flex-col items-center w-1/4 mx-5">
+    <div class="w-full text-center font-light bg-[#230679]/30 text-[#FFFDC9] border border-[#6F7CF1]/40 rounded-2xl shadow-md">
         <!-- Balance -->
         <div class="flex flex-col -mt-5">
             <div class="self-center w-32 text-lg border bg-[#17014F] border-[#6F7CF1] rounded-lg p-1" style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3)">
@@ -25,14 +25,18 @@
         </div>
     </div>
     <!-- Portfolio Donut Chart -->
-    <div class="-ml-5">
-        <svg id="donut-chart" class="w-full h-full"></svg>
+    <div id="donut-chart" class="mt-8">
     </div>
+    <ul class="text-[#FFFDC9] list-disc text-lg leading-loose">
+        <li class="marker:text-green-500">Cardano</li>
+        <li class="marker:text-orange-300">Bitcoin</li>
+        <li class="marker:text-red-500">Ethereum</li>
+    </ul>
     <script src="https://d3js.org/d3.v7.min.js"></script>
 </div>
 
 <!-- Asset Entries Table -->
-<div class="flex flex-col justify-center mx-5">
+<div class="flex flex-col justify-center mx-5 w-3/4">
     <div class="rounded-2xl shadow-md overflow-x-auto border border-[#6F7CF1]/40 text-[#FFFDC9] font-light"> <!--Border will work for whole table but does not work for individual row on line 15. Must be a tailwind thing. This will probably end up being it's own div due to overlapping div design from Figma. -->
         <div class="table w-full">
             <div class="table-header-group bg-[#17014F] text-xl">
@@ -160,17 +164,17 @@
 <script>
     // Donut Chart
     // TODO - Can this be made responsive?
-    const width = 300,
-        height = 300,
+    const width = 240,
+        height = 240,
         margin = 10;
     const radius = Math.min(width, height) / 2 - margin;
     const innerR = radius / 2;
     const svg = d3.select("#donut-chart")
-        // .append("svg")
-        //     .attr("width", width)
-        //     .attr("height", height)
-        .append("g")
-            .attr("transform", `translate(${width / 2}, ${height / 2})`);
+        .append("svg")
+        .attr("preserveAspectRatio", "xMinYMin meet")
+        .attr("width", width)
+        .attr("height", height)
+        .attr("viewbox", `0 0 ${width} ${height}`);
 
     // Test data - REPLACE with the portfolio contents 
     // This data will need to consist of the coin name as the key and the holdings as
@@ -195,7 +199,8 @@
             .innerRadius(innerR)
             .outerRadius(radius)
         )
-        .attr('fill', d => colorScale(d));
+        .attr('fill', d => colorScale(d))
+        .attr("transform", `translate(${width / 2}, ${height / 2})`);
 
     // Button Event Listeners
     const addElement = document.getElementById("addTokenButton");
