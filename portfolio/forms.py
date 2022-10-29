@@ -17,7 +17,7 @@ class UserRegistrationForm(UserCreationForm):
     password1 = CharField(
         label="Password",
         widget=PasswordInput(attrs={
-            'class': 'shadow appearance-none rounded w-full py-2 px-3 text-white bg-[#56657B]/70 leading-tight',
+            'class': 'shadow rounded w-full py-2 px-3 text-white bg-[#01013D] border border-[#6F7CF1] leading-tight',
             'type': 'password', 
             'align': 'center',
             'autocomplete': 'new-password'
@@ -26,7 +26,7 @@ class UserRegistrationForm(UserCreationForm):
     password2 = CharField(
         label="Confirm password",
         widget=PasswordInput(attrs={
-            'class': 'shadow appearance-none rounded w-full py-2 px-3 text-white bg-[#56657B]/70 leading-tight',
+            'class': 'shadow rounded w-full py-2 px-3 text-white bg-[#01013D] border border-[#6F7CF1] leading-tight',
             'type': 'password', 
             'align': 'center',
             'autocomplete': 'new-password'
@@ -39,10 +39,10 @@ class UserRegistrationForm(UserCreationForm):
         fields = ("username", "email")
         widgets = {
             'username': TextInput(attrs={
-                'class': 'shadow appearance-none rounded w-full py-2 px-3 text-white bg-[#56657B]/70 leading-tight'
+                'class': 'shadow rounded w-full py-2 px-3 text-white bg-[#01013D] border border-[#6F7CF1] leading-tight'
                 }),
             'email': EmailInput(attrs={
-                'class': 'shadow appearance-none rounded w-full py-2 px-3 text-white bg-[#56657B]/70 leading-tight'
+                'class': 'shadow rounded w-full py-2 px-3 text-white bg-[#01013D] border border-[#6F7CF1] leading-tight'
                 }),
         }
 
@@ -52,10 +52,10 @@ class UserLoginForm(AuthenticationForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['username'].widget.attrs.update(
-            {'class': 'shadow rounded w-full py-2 px-3 text-white bg-[#56657B]/70 leading-tight'}
+            {'class': 'shadow rounded w-full py-2 px-3 text-white bg-[#01013D] border border-[#6F7CF1] leading-tight'}
         )
         self.fields['password'].widget.attrs.update(
-            {'class': 'shadow rounded w-full py-2 px-3 text-white bg-[#56657B]/70 leading-tight'}
+            {'class': 'shadow rounded w-full py-2 px-3 text-white bg-[#01013D] border border-[#6F7CF1] leading-tight'}
         )
 
 # New Token

@@ -1,16 +1,16 @@
 from django.views.generic import (
-    TemplateView, 
-    CreateView, 
-    View, 
+    TemplateView,
+    CreateView,
+    View,
     FormView,
     UpdateView)
 from django.views.generic.edit import DeletionMixin
 from portfolio.forms import EditTokenForm, UserRegistrationForm, UserLoginForm, NewTokenForm
 from portfolio.models import AssetEntry
 from django.db.models import Sum
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-import requests 
+import requests
 import json
 
 # Landing
@@ -85,7 +85,7 @@ class PortfolioStatsPageView(TemplateView):
 # Marketcap related...
 class MarketcapPageView(TemplateView):
     template_name = 'mc.html'
-    
+
     class TokenAPI:
         def __init__(self, index, request, mockup=False):
             if not mockup:
@@ -156,6 +156,10 @@ class MarketcapPageView(TemplateView):
             token_list.append(self.TokenAPI(index=index, request=asset, mockup=False))
 
         return render(request, self.template_name, {'token_list': token_list, 'pages': pages, 'active_page': page_num})
+
+    def post(self, request, *args, **kwargs):
+        page=request.POST['page-input']
+        return redirect('mc-update', page_num=page)
 
 class MarketcapStatsPageView(TemplateView):
     template_name = 'mc-coin-stats.html'
