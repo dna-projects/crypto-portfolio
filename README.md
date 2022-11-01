@@ -2,7 +2,7 @@
 A crypto portfolio tracker with insight into crypto market data.
 
 ## Features
-* User Login
+* User Authentication
 * Portfolio (Balance, New entries, Profit and Loss)
 * Marketcap Data (Volume, Ranking)
 
