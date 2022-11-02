@@ -47,7 +47,6 @@ class UserRegistrationForm(UserCreationForm):
         }
 
 # Login Form
-
 class UserLoginForm(AuthenticationForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -72,7 +71,7 @@ class NewTokenForm(ModelForm):
             Select(
                 choices=(self.token_names),
                 attrs={
-                    'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5'
+                    'class': 'shadow w-full text-white bg-[#01013D] border border-[#6F7CF1] leading-tight text-sm rounded-lg block p-2.5'
                 })
 
     class Meta:
@@ -80,15 +79,15 @@ class NewTokenForm(ModelForm):
         fields = ("name", "cost_basis", "price_at_purchase", "quantity", "coingecko_id") #add entry_datetime
         widgets = {
             'cost_basis': NumberInput(attrs={
-                'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-6 py-2.5 pr-2.5',
+                'class': 'shadow w-full text-white bg-[#01013D] border border-[#6F7CF1] leading-tight text-sm rounded-lg block pl-6 py-2.5 pr-2.5',
                 'min': '0'
             }),
             'quantity': NumberInput(attrs={
-                'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5',
+                'class': 'shadow w-full text-white bg-[#01013D] border border-[#6F7CF1] leading-tight text-sm rounded-lg block p-2.5',
                 'min': '0'
             }),
             'price_at_purchase': NumberInput(attrs={
-                'class': 'bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-6 py-2.5 pr-2.5',
+                'class': 'shadow w-full text-white bg-[#01013D] border border-[#6F7CF1] leading-tight text-sm rounded-lg block pl-6 py-2.5 pr-2.5',
                 'min': '0'
             }),
             'coingecko_id': HiddenInput
