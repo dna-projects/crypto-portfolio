@@ -21,13 +21,47 @@
             <a href="#" class="block py-2 px-7 text-yellow-400 hover:text-white border border-yellow-400 rounded-full">Connect Wallet</a>
           </li>
           <li>
-            <a href="#">
-              <img src="{% static 'images/settingsIcon.svg' %}" class="h-8" alt="settingsIcon">
-            </a>
+            <!-- Settings dropdown -->
+            <div class="relative inline-block text-left">
+              <button class="settingsButton rounded-full hover:bg-[#454570]" type="button" onclick="settingsDropdown()">
+                <img src="{% static 'images/settingsIcon.svg' %}" class="h-8" alt="settingsIcon">
+              </button>
+              <div id="dropdownMenu" class="hidden absolute right-0 z-10 mt-2 w-56 origin-top-right bg-[#230679] border border-[#6F7CF1]/40 rounded-lg shadow-lg ring-1" tabindex="-1">
+                <div class="py-1" role="none">
+                  <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
+                  <a href="#" class="text-[#FFFDC9] block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0">Settings</a>
+                  <form method="POST" action="#" role="none">
+                    <button type="submit" class="text-[#FFFDC9] block w-full px-4 py-2 text-left text-sm" role="menuitem" tabindex="-1" id="menu-item-1">Sign out</button>
+                  </form>
+                </div>
+              </div>
+            </div>
           </li>
         </ul>
       </div>
     </div>
 </nav>
+
+<script>
+
+// Dropdown for settings icon
+function settingsDropdown() {
+  const x = document.getElementById("dropdownMenu");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+
+  window.onclick = function (event) {
+    if (event.target == x) {
+        x.style.display = "none";
+    }
+}
+}
+
+// Close dropdown if user clicks outside of it
+
+  </script>
 
 {% block content %} {% endblock content %}

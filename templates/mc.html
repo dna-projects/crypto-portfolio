@@ -4,12 +4,12 @@
     <div class="pb-5 text-xl text-[#FFFDC9]">Cryptocurrency prices by Market Cap</div>
     <div id="search-group" class="relative w-48">
         <button id="search-btn" class="absolute">
-            <input placeholder="Search" class="bg-blue-100 bg-opacity-20 rounded-lg p-1 mb-5">
+            <input placeholder="Search" class="bg-blue-100 text-white bg-opacity-20 rounded-lg p-1 mb-5">
         </button>
         <!-- Search Modal -->
-        <div id="search-modal" class="hidden overflow-y-auto overflow-x-hidden absolute w-full h-modal" aria-modal="true">
-            <div class="relative p-4 w-full max-w-md h-full md:h-auto">
-                <div class="relative bg-[#230679] border border-[#6F7CF1]/40 rounded-lg">
+        <div id="search-modal" class="hidden overflow-y-auto overflow-x-hidden absolute -right-4 z-10 w-56" aria-modal="true">
+            <div class="relative w-full max-w-md h-full md:h-auto">
+                <div class="relative bg-[#230679] border border-[#6F7CF1]/40 rounded-lg h-48">
                     <!-- Close button -->
                     <button id="search-close" type="button"
                         class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center">
@@ -20,7 +20,7 @@
                         </svg>
                     </button>
                     <div class="rflex flex-col text-[#FFFDC9] py-6 px-6 lg:px-8">
-                        <input placeholder="Enter token name" class="bg-blue-100 bg-opacity-20 rounded-lg p-1 mb-5">
+                        <input placeholder="Enter token name" class="justify-center bg-blue-100 bg-opacity-20 rounded-lg absolute left-2 top-12 w-fit z-10 p-1 mb-5 ml-2">
                     </div>
                 </div>
             </div>
@@ -43,7 +43,7 @@
                 <div class="table-cell p-2">Marketcap</div>
             </div>
         </div>
-        <div class="table-row-group bg-[#230679]/30 text-lg">
+        <div id="token-table" class="table-row-group bg-[#230679]/30 text-lg">
             {% for token in token_list%}
             <div class="table-row hover:bg-[#17014F]/60 tracking-wider">
                 <div class="table-cell p-2">{{ token.rank }}</div>
@@ -113,8 +113,24 @@
         }
     }
 
+    // Search
     const searchBtn = document.querySelector('#search-btn');
-    searchBtn.addEventListener('click', showSearch);
+    searchBtn.addEventListener('input', searchCoinGecko);
+    function searchCoinGecko(ev) {
+        let elem = ev.target
+        let searchInput = elem.value
+        const apiCall = `https://api.coingecko.com/api/v3/search?query=${searchInput}`
+        fetch(apiCall).then((response) => response.json()).then((data) => updateTokenTable(data))
+    }
+
+    // 
+    function updateTokenTable(data) {
+        console.log(data.coins)
+        const tokenTable = document.querySelector('#token-table');
+        tokenTable.innerHTML = `<div>${data.coins[0]}</div>`
+    }
+
+    // searchBtn.addEventListener('click', showSearch);
 
     // const pageInput = document.querySelector('#page-input');
 
