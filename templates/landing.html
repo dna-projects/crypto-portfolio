@@ -1,6 +1,10 @@
 {% load static %}
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" type="text/css" href="{% static '/css/style.css' %}">
+<!-- Google API for fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bakbak+One&family=Kanit:wght@400&family=Maven+Pro&display=swap" rel="stylesheet">
 
 <style>
     body {
@@ -28,14 +32,14 @@
             <div class="text-white text-2xl font-light italic mt-7 mb-7">Don't miss out...
                 <br>Manage your trades on the blockchain.</br></div>
             <div class="flex gap-4">
-                <button><a href="{% url 'mc' %}" class="flex justify-center buttonShadow hover:bg-[#454570] text-[#FFFDC9] rounded-full bg-[#01013D] w-36 py-3">Market Cap</a>
+                <button><a href="{% url 'mc' %}" class="flex justify-center buttonShadow hover:bg-[#454570] fontKanit text-[#FFFDC9] rounded-full bg-[#01013D] w-36 py-3">Market Cap</a>
                 </button>
-                <button><a href="{% url 'login' %}" class="flex justify-center buttonShadow hover:bg-[#454570] text-[#FFFDC9] rounded-full bg-[#01013D] w-36 py-3">Login/Register</a>
+                <button><a href="{% url 'login' %}" class="flex justify-center buttonShadow hover:bg-[#454570] fontKanit text-[#FFFDC9] rounded-full bg-[#01013D] w-36 py-3">Login/Register</a>
                 </button>
             </div>
         </div>
     </div>
     <div class="self-center justify-center">
-        <img src="{% static 'images/portfolio_placeholder.png' %}" alt="logo" class="customShadow customWidth self-center rounded-2xl" >
+        <img src="{% static 'images/portfolio-thumb.png' %}" alt="portfolio thumbnail" class="customShadow customWidth self-center rounded-2xl" >
     </div>
 </div>

@@ -1,6 +1,7 @@
 {% extends "portfolio-base.html" %}
 {% block main %}
 {% load static %}
+<link rel="stylesheet" type="text/css" href="{% static '/css/style.css' %}">
 
 <!-- Update token details form -->
 <div class="flex flex-col">
@@ -8,8 +9,8 @@
         <a href="{% url 'portfolio' %}"><img src="{% static 'images/goback_icon.png' %}" alt="goback_icon" class="w-8"></a>
     </button>
     <div class="flex flex-col py-6 px-6 lg:px-8">
-        <h3 class="self-center z-30 font-light text-xl text-[#FFFDC9] bg-[#17014F] border border-[#6F7CF1] rounded-lg px-5 py-1 -mb-5">Update Token Information</h3>
-        <form method="post" action="">
+        <h3 class="self-center z-30 fontKanit text-xl text-[#FFFDC9] bg-[#17014F] border border-[#6F7CF1] rounded-lg px-5 py-1 -mb-5">Update Token Information</h3>
+        <form method="post" class="fontMavenpro">
             {% csrf_token %}
             <div class="grid grid-cols-8 gap-4 font-light bg-[#230679]/30 border border-[#6F7CF1]/40 rounded-2xl shadow-md p-5 py-10">
                 <!-- TODO - Figure out how to access the asset's name -->
@@ -53,7 +54,7 @@
             </div>
             <div class="flex justify-center mt-6">
                 <button type="submit" name="update" value="update"
-                    class="px-4 py-1 hover:bg-[#454570] hover:text-white rounded-full bg-[#01013D] border border-[#6F7CF1] text-[#FFFDC9]">Update</button>
+                    class="px-4 py-1 hover:bg-[#454570] hover:text-white rounded-full bg-[#01013D] border border-[#6F7CF1] text-[#FFFDC9] fontKanit">Update</button>
             </div>
         </form>
     </div>
@@ -73,14 +74,14 @@
                         </path>
                     </svg>
                 </button>
-                <div class="rflex flex-col py-6 px-6 lg:px-8">
+                <div class="rflex flex-col fontMavenpro py-6 px-6 lg:px-8">
                     <h3 class="self-center mt-5 mb-4 text-xl">You are about to delete this
                         entry.</h3>
                     <h3 class="self-center mb-10 text-xl">Do you want to continue?</h3>
                     <form class="flex place-content-end" method="post">
                         {% csrf_token %}
                         <button type="button" id="delete-cancel"
-                            class="mr-2 px-4 py-1 hover:bg-[#454570] hover:text-white rounded-full bg-[#01013D] border border-[#6F7CF1] text-[#FFFDC9]">Cancel</button>
+                            class="mr-2 px-4 py-1 hover:bg-[#454570] hover:text-white rounded-full bg-[#01013D] border border-[#6F7CF1] text-[#FFFDC9] fontKanit">Cancel</button>
                         <button type="submit" name="delete" value="delete"
                             class="px-4 py-1 hover:bg-red-500 hover:text-white rounded-2xl bg-red-600 text-white">Delete</button>
                     </form>

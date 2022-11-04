@@ -35,3 +35,17 @@
 .buttonShadow {
     box-shadow: 3px 3px 4px rgba(1, 1, 1, 0.4);
 }
+
+/* fonts */
+
+.fontKanit {
+    font-family: "Kanit", sans-serif;
+}
+
+.fontBakbakone{
+    font-family: "Bakbak One", sans-serif;
+}
+
+.fontMavenpro {
+    font-family: "Maven Pro", sans-serif;
+}

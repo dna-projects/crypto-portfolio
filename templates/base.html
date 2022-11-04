@@ -1,5 +1,10 @@
 {% load static %}
 <script src="https://cdn.tailwindcss.com"></script>
+<!-- Google API for fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bakbak+One&family=Kanit:wght@400&family=Maven+Pro&display=swap" rel="stylesheet">
+
 <style>
   body {
     background-image: url("{% static '/images/bg5.jpg' %}") !important;
@@ -18,7 +23,7 @@
       <div class="hidden w-full md:block md:w-auto" id="navbar-default">
         <ul class="flex items-center mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium">
           <li>
-            <a href="#" class="block py-2 px-7 text-yellow-400 hover:text-white border border-yellow-400 rounded-full">Connect Wallet</a>
+            <a href="#" class="block py-2 px-7 fontKanit text-yellow-400 hover:text-white border border-yellow-400 rounded-full">Connect Wallet</a>
           </li>
           <li>
             <!-- Settings dropdown -->
@@ -26,12 +31,12 @@
               <button class="settingsButton rounded-full hover:bg-[#454570]" type="button" onclick="settingsDropdown()">
                 <img src="{% static 'images/settingsIcon.svg' %}" class="h-8" alt="settingsIcon">
               </button>
-              <div id="dropdownMenu" class="hidden absolute right-0 z-10 mt-2 w-56 origin-top-right bg-[#230679] border border-[#6F7CF1]/40 rounded-lg shadow-lg ring-1" tabindex="-1">
-                <div class="py-1" role="none">
+              <div id="dropdownMenu" class="hidden absolute right-0 z-10 mt-2 w-56 origin-top-right bg-[#230679]/70 border border-[#6F7CF1]/40 rounded-lg shadow-lg ring-1">
+                <div  role="none">
                   <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
-                  <a href="#" class="text-[#FFFDC9] block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0">Settings</a>
+                  <a href="#" class="text-[#FFFDC9] fontMavenpro block rounded-t-lg px-4 py-2 text-md hover:bg-blue-100/20 hover:text-white" id="menu-item-0">Settings</a>
                   <form method="POST" action="#" role="none">
-                    <button type="submit" class="text-[#FFFDC9] block w-full px-4 py-2 text-left text-sm" role="menuitem" tabindex="-1" id="menu-item-1">Sign out</button>
+                    <button type="submit" class="text-[#FFFDC9] fontMavenpro block w-full px-4 py-2 text-left text-md hover:bg-blue-100/20 hover:text-white" id="menu-item-1">Sign out</button>
                   </form>
                 </div>
               </div>
