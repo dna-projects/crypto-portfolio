@@ -1,17 +1,20 @@
 {% extends "mc-base.html" %}
+{% load static %}
 {% block main %}
+<link rel="stylesheet" type="text/css" href="{% static '/css/style.css' %}">
+
 <div class="flex justify-between">
-    <div class="pb-5 text-xl text-[#FFFDC9]">Cryptocurrency prices by Market Cap</div>
-    <div id="search-group" class="relative w-48">
-        <button id="search-btn" class="absolute">
-            <input placeholder="Search" class="bg-blue-100 text-white bg-opacity-20 rounded-lg p-1 mb-5">
+    <div class="pb-5 text-2xl text-[#FFFDC9] fontKanit">Cryptocurrency prices by Market Cap</div>
+    <div id="search-group">
+        <button id="search-btn">
+            <input placeholder="Search" class="bg-blue-100 w-32 text-white fontMavenpro bg-opacity-20 rounded-lg focus:outline-0 focus:w-60 duration-500 py-1 pl-2 mb-5 mr-1">
         </button>
         <!-- Search Modal -->
-        <div id="search-modal" class="hidden overflow-y-auto overflow-x-hidden absolute -right-4 z-10 w-56" aria-modal="true">
+        <!-- <div id="search-modal" class="hidden overflow-y-auto overflow-x-hidden absolute -right-4 z-10 w-56" aria-modal="true">
             <div class="relative w-full max-w-md h-full md:h-auto">
-                <div class="relative bg-[#230679] border border-[#6F7CF1]/40 rounded-lg h-48">
+                <div class="relative bg-[#230679] border border-[#6F7CF1]/40 rounded-lg h-48"> -->
                     <!-- Close button -->
-                    <button id="search-close" type="button"
+                    <!-- <button id="search-close" type="button"
                         class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center">
                         <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -24,13 +27,13 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>
 <!-- Asset Entries Table -->
 <div class="rounded-2xl shadow-md overflow-x-auto border border-[#6F7CF1]/40 text-[#FFFDC9] font-light">
     <div class="table w-full">
-        <div class="table-header-group bg-[#17014F] text-xl">
+        <div class="table-header-group bg-[#17014F] text-xl fontKanit">
             <div class="table-row">
                 <!-- TODO: Fix symbol icon positioning -->
                 <div class="table-cell p-2">#</div>
@@ -43,7 +46,7 @@
                 <div class="table-cell p-2">Marketcap</div>
             </div>
         </div>
-        <div id="token-table" class="table-row-group bg-[#230679]/30 text-lg">
+        <div id="token-table" class="table-row-group bg-[#230679]/30 text-lg fontMavenpro">
             {% for token in token_list%}
             <div class="table-row hover:bg-[#17014F]/60 tracking-wider">
                 <div class="table-cell p-2">{{ token.rank }}</div>
@@ -73,14 +76,14 @@
     <ol class="flex flex-row justify-center gap-1 col-start-2">
         {% for page in pages %}
             {% if active_page == page.num %}
-                <li class="font-semibold hover:text-white border hover:border-white border-yellow-400 rounded p-1">
+                <li class="font-semibold text-white fontMavenpro hover:text-white bg-blue-100/20 rounded py-1 px-2">
                     <button>
                         <a href="{% url 'mc-update' page.num %}">{{ page.value }}</a>
                     </button>
                 </li>
             {% else %}
                 {% if page.num > 0 %}
-                    <li class="hover:text-white border hover:border-white border-[#6F7CF1]/40 rounded p-1">
+                    <li class="fontMavenpro hover:text-white p-1">
                         <button>
                             <a href="{% url 'mc-update' page.num %}">{{ page.value }}</a>
                         </button>
@@ -90,10 +93,10 @@
         {% endfor %}
     </ol>
     <!-- Goto page box -->
-    <form method="post" id="page-goto" class="flex gap-1 col-start-3 mt-4">
+    <form method="post" id="page-goto" class="flex justify-center gap-1 col-start-3 mt-4">
         {% csrf_token %}
-        <input type="tel" placeholder="Go to page" id="page-input" name="page-input" pattern="[0-9]{1,3}" maxlength="3" class="self-center w-24 bg-blue-100 bg-opacity-20 rounded p-1">
-        <button class="border border-[#16004F] rounded-md bg-[#16004F] text-indigo-50 px-3">Go</button>
+        <input type="tel" placeholder="Go to page" id="page-input" name="page-input" pattern="[0-9]{1,3}" maxlength="3" class="self-center w-24 bg-blue-100 bg-opacity-20 rounded fontMavenpro focus:outline-0 p-1">
+        <button class="border border-[#16004F] rounded-md bg-[#16004F] text-indigo-50 fontKanit px-3">Go</button>
     </form>
 </div>
 <script>

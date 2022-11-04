@@ -17,7 +17,7 @@ class UserRegistrationForm(UserCreationForm):
     password1 = CharField(
         label="Password",
         widget=PasswordInput(attrs={
-            'class': 'shadow rounded w-full py-2 px-3 text-white bg-[#01013D] border border-[#6F7CF1] leading-tight',
+            'class': 'shadow rounded w-full py-2 px-3 text-white bg-[#01013D]/50 border border-[#6F7CF1] leading-tight',
             'type': 'password', 
             'align': 'center',
             'autocomplete': 'new-password'
@@ -26,7 +26,7 @@ class UserRegistrationForm(UserCreationForm):
     password2 = CharField(
         label="Confirm password",
         widget=PasswordInput(attrs={
-            'class': 'shadow rounded w-full py-2 px-3 text-white bg-[#01013D] border border-[#6F7CF1] leading-tight',
+            'class': 'shadow rounded w-full py-2 px-3 text-white bg-[#01013D]/50 border border-[#6F7CF1] leading-tight',
             'type': 'password', 
             'align': 'center',
             'autocomplete': 'new-password'
@@ -39,10 +39,10 @@ class UserRegistrationForm(UserCreationForm):
         fields = ("username", "email")
         widgets = {
             'username': TextInput(attrs={
-                'class': 'shadow rounded w-full py-2 px-3 text-white bg-[#01013D] border border-[#6F7CF1] leading-tight'
+                'class': 'shadow rounded w-full py-2 px-3 text-white bg-[#01013D]/50 border border-[#6F7CF1] leading-tight'
                 }),
             'email': EmailInput(attrs={
-                'class': 'shadow rounded w-full py-2 px-3 text-white bg-[#01013D] border border-[#6F7CF1] leading-tight'
+                'class': 'shadow rounded w-full py-2 px-3 text-white bg-[#01013D]/50 border border-[#6F7CF1] leading-tight'
                 }),
         }
 
@@ -51,10 +51,10 @@ class UserLoginForm(AuthenticationForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['username'].widget.attrs.update(
-            {'class': 'shadow rounded w-full py-2 px-3 text-white bg-[#01013D] border border-[#6F7CF1] leading-tight'}
+            {'class': 'shadow rounded w-full py-2 px-3 text-white bg-[#01013D]/50 border border-[#6F7CF1] leading-tight'}
         )
         self.fields['password'].widget.attrs.update(
-            {'class': 'shadow rounded w-full py-2 px-3 text-white bg-[#01013D] border border-[#6F7CF1] leading-tight'}
+            {'class': 'shadow rounded w-full py-2 px-3 text-white bg-[#01013D]/50 border border-[#6F7CF1] leading-tight'}
         )
 
 # New Token
@@ -71,7 +71,7 @@ class NewTokenForm(ModelForm):
             Select(
                 choices=(self.token_names),
                 attrs={
-                    'class': 'shadow w-full text-white bg-[#01013D] border border-[#6F7CF1] leading-tight text-sm rounded-lg block p-2.5'
+                    'class': 'shadow w-full text-white bg-[#01013D]/70 border border-[#6F7CF1] leading-tight text-sm rounded-lg block p-2.5'
                 })
 
     class Meta:
@@ -79,15 +79,15 @@ class NewTokenForm(ModelForm):
         fields = ("name", "cost_basis", "price_at_purchase", "quantity", "coingecko_id") #add entry_datetime
         widgets = {
             'cost_basis': NumberInput(attrs={
-                'class': 'shadow w-full text-white bg-[#01013D] border border-[#6F7CF1] leading-tight text-sm rounded-lg block pl-6 py-2.5 pr-2.5',
+                'class': 'shadow w-full text-white bg-[#01013D]/70 border border-[#6F7CF1] leading-tight text-sm rounded-lg block pl-6 py-2.5 pr-2.5',
                 'min': '0'
             }),
             'quantity': NumberInput(attrs={
-                'class': 'shadow w-full text-white bg-[#01013D] border border-[#6F7CF1] leading-tight text-sm rounded-lg block p-2.5',
+                'class': 'shadow w-full text-white bg-[#01013D]/70 border border-[#6F7CF1] leading-tight text-sm rounded-lg block p-2.5',
                 'min': '0'
             }),
             'price_at_purchase': NumberInput(attrs={
-                'class': 'shadow w-full text-white bg-[#01013D] border border-[#6F7CF1] leading-tight text-sm rounded-lg block pl-6 py-2.5 pr-2.5',
+                'class': 'shadow w-full text-white bg-[#01013D]/70 border border-[#6F7CF1] leading-tight text-sm rounded-lg block pl-6 py-2.5 pr-2.5',
                 'min': '0'
             }),
             'coingecko_id': HiddenInput

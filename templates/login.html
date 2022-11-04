@@ -6,21 +6,21 @@
 <div class="flex justify-center pb-8">
     <a href="{% url 'landing' %}"><img src="{% static 'images/apelogotext.svg' %}" alt="logo" class="w-72"></a>
 </div>
-<form method="post" action="" class="flex flex-col mb-0 px-2">
+<form method="post" action="" class="flex flex-col text-md fontMavenpro mb-0 px-2">
     {% csrf_token %}
-    <label class="block text-sm font-normal text-[#FFFDC9]">Username</label>
+    <label class="block font-normal text-[#FFFDC9]">Username</label>
     <div class='my-3'>
         {{ form.username }}
     </div>
-    <label class="block text-sm font-normal text-[#FFFDC9]">Password</label>
+    <label class="block font-normal text-[#FFFDC9]">Password</label>
     <div class='my-3'>
         {{ form.password }}
     </div>
-    <button type="submit" class="text-lg hover:bg-[#454570] hover:text-white rounded-full bg-[#01013D] border border-[#6F7CF1] text-[#FFFDC9] mx-5 mb-5 mt-8 px-4 py-1">Login</button>
+    <button type="submit" class="text-lg fontKanit hover:bg-[#454570] hover:text-white rounded-full bg-[#01013D] border border-[#6F7CF1] text-[#FFFDC9] mx-5 mb-5 mt-8 px-4 py-1">Login</button>
 </form>
 <hr class="w-full border-t border-[#FFFDC9]" /> <!-- Dividing line -->
 <div class="flex justify-center">
-    <button class="text-[#6F7CF1] font-medium mt-3 hover:text-gray-400"><a href="{% url 'registration' %}">Register</a></button>
+    <button class="text-[#6F7CF1] font-medium fontMavenpro mt-3 hover:text-gray-400"><a href="{% url 'registration' %}">Register</a></button>
 </div>
 {% endblock content %}
 
