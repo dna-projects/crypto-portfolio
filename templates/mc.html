@@ -6,9 +6,18 @@
 <div class="flex justify-between">
     <div class="pb-5 text-2xl text-[#FFFDC9] fontKanit">Cryptocurrency prices by Market Cap</div>
     <div id="search-group">
-        <button id="search-btn">
-            <input placeholder="Search" class="bg-blue-100 w-32 text-white fontMavenpro bg-opacity-20 rounded-lg focus:outline-0 focus:w-60 duration-500 py-1 pl-2 mb-5 mr-1">
-        </button>
+            <div class="relative">
+                <div class="absolute inset-y-0 left-0 pl-2 -mt-5 flex items-center pointer-events-none">
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 text-slate-400">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                          </svg>                                                  
+                    </span>
+                </div>
+                <button id="search-btn">
+                    <input placeholder="Search" class="bg-blue-100 w-28 text-white fontMavenpro bg-opacity-20 rounded-lg focus:outline-0 focus:w-60 ease-in-out duration-500 py-2 pl-9 mb-5 mr-1">
+                </button>
+            </div>
         <!-- Search Modal -->
         <!-- <div id="search-modal" class="hidden overflow-y-auto overflow-x-hidden absolute -right-4 z-10 w-56" aria-modal="true">
             <div class="relative w-full max-w-md h-full md:h-auto">
@@ -46,9 +55,9 @@
                 <div class="table-cell p-2">Marketcap</div>
             </div>
         </div>
-        <div id="token-table" class="table-row-group bg-[#230679]/30 text-lg fontMavenpro">
+        <div id="token-table" class="table-row-group bg-[#230679]/40 text-lg fontMavenpro">
             {% for token in token_list%}
-            <div class="table-row hover:bg-[#17014F]/60 tracking-wider">
+            <div class="table-row hover:bg-[#17014F]/60 ease-in-out duration-150 tracking-wider">
                 <div class="table-cell p-2">{{ token.rank }}</div>
                 <div class="table-cell p-2">{{ token.name }}</div>
                 <div class="table-cell p-2">{{ token.price }}</div>

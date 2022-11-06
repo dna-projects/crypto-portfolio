@@ -8,11 +8,11 @@
 
 <style>
     body {
-      background-image: url("{% static '/images/bg5_landing4.jpg' %}") !important;
+      background-image: url("{% static '/images/bg5.jpg' %}") !important;
       background-size: cover;
       background-attachment: fixed;
       background-position: center;
-      backdrop-filter: blur(40px);
+      backdrop-filter: blur(130px);
     }
 </style>
 
@@ -20,21 +20,21 @@
     <img src="{% static 'images/apelogotext.svg' %}" alt="logo" class="self-center w-72 ml-8 p-5">
 </div> -->
 
-<div class="flex flex-row justify-around w-screen h-screen">
+<div class="flex flex-row justify-evenly w-screen h-screen">
         <!-- Project Title/Logo -->
     <div class="grid grid-rows-3 w-[32rem] ml-15">
         <div>
-            <img src="{% static 'images/apelogotext.svg' %}" alt="logo" class="w-64 mt-3 -ml-8">
+            <img src="{% static 'images/apelogotext.svg' %}" alt="logo" class="w-64 mt-10 -ml-8">
         </div>
         <div class="flex flex-col self-center">
             <div class="text-yellow-300 text-3xl font-bold">Sign up Today</div>
-            <div class="text-white text-5xl font-extrabold mt-3">Track Your Crypto Portfolio</div>
+            <div class="text-white text-6xl font-extrabold mt-3">Track Your Crypto Portfolio</div>
             <div class="text-white text-2xl font-light italic mt-7 mb-7">Don't miss out...
                 <br>Manage your trades on the blockchain.</br></div>
-            <div class="flex gap-4">
-                <button><a href="{% url 'mc' %}" class="flex justify-center buttonShadow hover:bg-[#454570] fontKanit text-[#FFFDC9] rounded-full bg-[#01013D] w-36 py-3">Market Cap</a>
+            <div class="flex gap-4 mt-5">
+                <button><a href="{% url 'mc' %}" class="flex justify-center w-44 hover:bg-opacity-30 hover:outline ease-in-out duration-150 fontKanit text-[#FFFDC9] text-lg rounded-full bg-[#01013D] py-3">Market Cap</a>
                 </button>
-                <button><a href="{% url 'login' %}" class="flex justify-center buttonShadow hover:bg-[#454570] fontKanit text-[#FFFDC9] rounded-full bg-[#01013D] w-36 py-3">Login/Register</a>
+                <button><a href="{% url 'login' %}" class="flex justify-center hover:bg-opacity-30 hover:outline ease-in-out duration-150 fontKanit text-[#FFFDC9] text-lg rounded-full bg-[#01013D] w-44 py-3">Login/Register</a>
                 </button>
             </div>
         </div>
