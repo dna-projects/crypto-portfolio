@@ -4,7 +4,7 @@
 <link rel="stylesheet" type="text/css" href="{% static '/css/style.css' %}">
 
 <div class="flex justify-between">
-    <div class="pb-5 text-2xl text-[#FFFDC9] fontKanit">Cryptocurrency prices by Market Cap</div>
+    <div class="pb-5 text-2xl text-[#FFFDC9] fontKanit tracking-wider">Cryptocurrency prices by Market Cap</div>
     <div id="search-group">
             <div class="relative">
                 <div class="absolute inset-y-0 left-0 pl-2 -mt-5 flex items-center pointer-events-none">
@@ -45,37 +45,37 @@
         <div class="table-header-group bg-[#17014F] text-xl fontKanit">
             <div class="table-row">
                 <!-- TODO: Fix symbol icon positioning -->
-                <div class="table-cell p-2">#</div>
-                <div class="table-cell p-2">Coin</div>
-                <div class="table-cell p-2">Price</div>
+                <div class="table-cell border-b border-[#6F7CF1]/40 p-2">#</div>
+                <div class="table-cell border-b border-[#6F7CF1]/40 p-2">Coin</div>
+                <div class="table-cell border-b border-[#6F7CF1]/40 p-2">Price</div>
                 <!-- <div class="table-cell p-2">1h</div> -->
-                <div class="table-cell p-2">24h</div>
+                <div class="table-cell border-b border-[#6F7CF1]/40 p-2">24h</div>
                 <!-- <div class="table-cell p-2">7d</div> -->
-                <div class="table-cell p-2">24h Volume</div>
-                <div class="table-cell p-2">Marketcap</div>
+                <div class="table-cell border-b border-[#6F7CF1]/40 p-2">24h Volume</div>
+                <div class="table-cell border-b border-[#6F7CF1]/40 p-2">Marketcap</div>
             </div>
         </div>
         <div id="token-table" class="table-row-group bg-[#230679]/40 text-lg fontMavenpro">
             {% for token in token_list%}
             <div class="table-row hover:bg-[#17014F]/60 ease-in-out duration-150 tracking-wider">
-                <div class="table-cell p-2">{{ token.rank }}</div>
-                <div class="table-cell p-2">{{ token.name }}</div>
-                <div class="table-cell p-2">{{ token.price }}</div>
+                <div class="table-cell px-2 py-4">{{ token.rank }}</div>
+                <div class="table-cell px-2 py-4">{{ token.name }}</div>
+                <div class="table-cell px-2 py-4">{{ token.price }}</div>
                 <!-- <div class="table-cell p-2">{{ token.one_hour_performance }}</div> -->
                 <!-- Negative performance -->
                 {% if token.one_day_performance < 0 %}
-                    <div class="table-cell p-2 text-red-500">
+                    <div class="table-cell px-2 py-4 text-red-500">
                         {{ token.one_day_performance|floatformat:"2g" }}%
                     </div>
                 <!-- Positive performance -->
                 {% elif token.one_day_performance >= 0 %}
-                    <div class="table-cell p-2 text-lime-400">
+                    <div class="table-cell px-2 py-4 text-lime-400">
                         +{{ token.one_day_performance|floatformat:"2g" }}%
                     </div>
                 {% endif %}
                 <!-- <div class="table-cell p-2">{{ token.seven_day_performance }}</div> -->
-                <div class="table-cell p-2">${{ token.one_day_volume }}</div>
-                <div class="table-cell p-2">${{ token.marketcap }}</div>
+                <div class="table-cell px-2 py-4">${{ token.one_day_volume }}</div>
+                <div class="table-cell px-2 py-4">${{ token.marketcap }}</div>
             </div>
             {% endfor %}
         </div>
@@ -105,7 +105,7 @@
     <form method="post" id="page-goto" class="flex justify-center gap-1 col-start-3 mt-4">
         {% csrf_token %}
         <input type="tel" placeholder="Go to page" id="page-input" name="page-input" pattern="[0-9]{1,3}" maxlength="3" class="self-center w-24 bg-blue-100 bg-opacity-20 rounded fontMavenpro focus:outline-0 p-1">
-        <button class="border border-[#16004F] rounded-md bg-[#16004F] text-indigo-50 fontKanit px-3">Go</button>
+        <button class="border border-[#16004F] rounded-md bg-[#16004F] text-indigo-50 fontKanit hover:bg-opacity-30 hover:outline ease-in-out duration-150 px-3">Go</button>
     </form>
 </div>
 <script>

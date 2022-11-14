@@ -17,13 +17,13 @@
 
 <nav class="px-2 sm:px-4 py-4">
     <div class="container flex flex-wrap justify-between items-center mx-auto">
-      <a href="mc" class="flex items-center">
+      <a href="{% url 'mc' %}" class="flex items-center">
           <img src="{% static 'images/apelogotext.svg' %}" class="h-16" alt="Logo">
       </a>
       <div class="hidden w-full md:block md:w-auto" id="navbar-default">
         <ul class="flex items-center mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium">
           <li>
-            <a href="#" class="block py-2 px-7 fontKanit text-yellow-400 hover:text-white border border-yellow-400 rounded-full">Connect Wallet</a>
+            <a href="#" class="block py-2 px-7 fontKanit text-yellow-400 border border-yellow-400 rounded-full hover:bg-opacity-30 hover:outline ease-in-out duration-150 hover:bg-[#01013D]">Connect Wallet</a>
           </li>
           <li>
             <!-- Settings dropdown -->
@@ -31,13 +31,22 @@
               <button class="settingsButton rounded-full hover:bg-[#454570]" type="button" onclick="settingsDropdown()">
                 <img src="{% static 'images/settingsIcon.svg' %}" class="h-8" alt="settingsIcon">
               </button>
-              <div id="dropdownMenu" class="hidden absolute right-0 z-10 mt-2 w-56 origin-top-right bg-[#230679]/70 border border-[#6F7CF1]/40 rounded-lg shadow-lg ring-1">
-                <div  role="none">
-                  <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
-                  <a href="#" class="text-[#FFFDC9] fontMavenpro block rounded-t-lg px-4 py-2 text-md hover:bg-blue-100/20 hover:text-white" id="menu-item-0">Settings</a>
-                  <form method="POST" action="#" role="none">
-                    <button type="submit" class="text-[#FFFDC9] fontMavenpro block w-full px-4 py-2 text-left text-md hover:bg-blue-100/20 hover:text-white" id="menu-item-1">Sign out</button>
-                  </form>
+              <div id="dropdownMenu" class="hidden absolute right-0 z-10 mt-2 w-52 h-auto origin-top-right bg-[#230679]/70 border border-[#6F7CF1]/40 rounded-lg shadow-lg">
+                <div class="flex flex-col" role="none">
+                  <!-- User info -->
+                  <div class="flex justify-center text-white mt-7">
+                    <svg class="svg-icon" style="width: 4em; height: 4em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M512 1024a510.421333 510.421333 0 0 1-371.584-160A511.850667 511.850667 0 1 1 512 1024z m309.632-160a466.965333 466.965333 0 0 0-619.264 0 467.477333 467.477333 0 0 0 619.264 0zM746.666667 469.333333a234.666667 234.666667 0 1 0-234.666667 234.666667 234.666667 234.666667 0 0 0 234.666667-234.666667zM512 42.666667A468.864 468.864 0 0 0 171.370667 834.133333a510.528 510.528 0 0 1 219.52-115.690666 277.333333 277.333333 0 1 1 242.218666 0 510.528 510.528 0 0 1 219.52 115.690666A468.864 468.864 0 0 0 512 42.666667z"  /></svg>
+                  </div>
+                  <div class="flex justify-center text-[#FFFDC9] fontMavenpro mt-1 mb-7">
+                    {{ user.username }}
+                  </div>
+                  <!-- Buttons -->
+                  <div class="flex justify-between bg-[#230679] border-t border-[#6F7CF1]/40 rounded-b-lg p-2">
+                    <a href="#" class="text-[#FFFDC9] fontMavenpro block rounded text-md py-1 px-2 hover:bg-blue-100/20 hover:text-white" id="menu-item-0">Settings</a>
+                    <form method="post" action="#" role="none" class="mb-0">
+                      <button type="submit" class="text-[#FFFDC9] fontMavenpro block rounded w-full text-left text-md py-1 px-2 hover:bg-blue-100/20 hover:text-white" id="menu-item-1">Log out</button>
+                    </form>
+                  </div>
                 </div>
               </div>
             </div>
