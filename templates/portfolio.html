@@ -63,7 +63,9 @@
             <div id="assets" class="table-row-group bg-[#230679]/30 text-lg text-[#FFFDC9] fontMavenpro">
                 {% for asset in asset_entries %}
                 <div id="asset-{{ forloop.counter }}" class="table-row ease-in-out duration-150 hover:bg-[#17014F]/60 tracking-wider">
-                    <div class="table-cell align-middle p-2">🦀</div>
+                    <div class="table-cell align-middle pl-2">
+                        <img class="w-8" src="{{ asset.img_url }}" alt="token_logo">
+                    </div>
                     <div class="table-cell align-middle p-2">{{ asset.name }}</div>
                     <div id="asset-price" class="table-cell align-middle p-2">
                         {% if asset.price_at_purchase < 0.01 %}
@@ -134,6 +136,8 @@
                     </div>
                     {{ tokens|json_script:"token-data" }}
                     {{ form.coingecko_id }}
+                    {{ token_imgs|json_script:"token-imgs" }}
+                    {{ form.img_url}}
                     <label class="block mb-1 mt-4 text-sm font-light">Quantity</label>
                     <div class="">
                         {{ form.quantity }}
@@ -232,8 +236,12 @@
         let tokenSelected = document.querySelector('#id_name').selectedOptions[0].label;
         let coingeckoId = document.querySelector('#id_coingecko_id');
 
+        // Image urls
+        let images = JSON.parse(document.getElementById('token-imgs').textContent);
+        let imgUrlInput = document.querySelector('#id_img_url');
+
         coingeckoId.value = tokens[tokenSelected];
-        console.log(coingeckoId.value);
+        imgUrlInput.value = images[tokenSelected];
     }
 
     /* Add new token modal - Update Cost Basis input automatically based on 

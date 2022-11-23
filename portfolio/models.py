@@ -15,7 +15,7 @@ class AssetEntry(models.Model):
     price_at_purchase = models.DecimalField(max_digits=20, decimal_places=10, validators=[MinValueValidator(Decimal('0.0000000000'))])
     quantity = models.DecimalField(max_digits=23, decimal_places=10, validators=[MinValueValidator(Decimal('0.0000000000'))])
     coingecko_id = models.CharField(max_length=24, default='')
-    # entry_datetime = models.DateTimeField()
+    img_url = models.URLField(default='#')
 
     def __str__(self):
         return self.name

@@ -51,6 +51,11 @@ class PortfolioPageView(CreateView):
         tokens = {}
         for index, _ in enumerate(asset):
             tokens[asset[index]['name']] = asset[index]['id']
+        
+        # Get token image from Coingecko
+        token_imgs = {}
+        for index, _ in enumerate(asset):
+            token_imgs[asset[index]['name']] = asset[index]['image']
 
         form = NewTokenForm()
         form.updateChoices(tokens)
@@ -58,7 +63,8 @@ class PortfolioPageView(CreateView):
             'asset_entries': asset_entries, 
             'form': form,
             'tokens': tokens,
-            'balance': balance
+            'token_imgs': token_imgs,
+            'balance': balance,
             })
 
 class PortfolioEditView(DeletionMixin, UpdateView):

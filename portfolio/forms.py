@@ -76,7 +76,7 @@ class NewTokenForm(ModelForm):
 
     class Meta:
         model = AssetEntry
-        fields = ("name", "cost_basis", "price_at_purchase", "quantity", "coingecko_id") #add entry_datetime
+        fields = ("name", "cost_basis", "price_at_purchase", "quantity", "coingecko_id", "img_url") #add entry_datetime
         widgets = {
             'cost_basis': NumberInput(attrs={
                 'class': 'shadow w-full text-white bg-[#01013D]/70 border border-[#6F7CF1] leading-tight text-sm rounded-lg block pl-6 py-2.5 pr-2.5',
@@ -90,7 +90,8 @@ class NewTokenForm(ModelForm):
                 'class': 'shadow w-full text-white bg-[#01013D]/70 border border-[#6F7CF1] leading-tight text-sm rounded-lg block pl-6 py-2.5 pr-2.5',
                 'min': '0'
             }),
-            'coingecko_id': HiddenInput
+            'coingecko_id': HiddenInput,
+            'img_url': HiddenInput
         }
 
 # Edit existing token. Uses the new token form and excludes the unnecessary fields
