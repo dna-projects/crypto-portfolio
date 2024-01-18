@@ -12,6 +12,9 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 import requests
 import json
+from decouple import config
+
+coingecko_key = config('COINGECKO_API')
 
 # Landing
 class LandingPageView(TemplateView):
@@ -37,16 +40,17 @@ class PortfolioPageView(CreateView):
     def get(self, request):
         asset_entries = AssetEntry.objects.all()
         # TODO - Need to make this update based on the current price from Coingecko
-        # NOT the cost basis 
+        # NOT the cost basis
         balance = AssetEntry.objects.aggregate(total=Sum('cost_basis'))
 
         # Get token list from Coingecko
         # TODO - Run the api call only when opening the add token modal
         num_tokens = 15
         currency = 'usd'
-        url_tokens = f"https://api.coingecko.com/api/v3/coins/markets?vs_currency={currency}&order=market_cap_desc&per_page={num_tokens}&page=1&sparkline=false"
+        url_tokens = f"https://api.coingecko.com/api/v3/coins/markets?vs_currency={currency}&order=market_cap_desc&per_page={num_tokens}&page=1&sparkline=false&x_cg_demo_api_key={coingecko_key}"
         response = requests.get(url_tokens)
         asset = json.loads(response.content)
+        print(asset)
 
         tokens = {}
         for index, _ in enumerate(asset):
@@ -124,7 +128,7 @@ class MarketcapPageView(TemplateView):
         # Make request to coin gecko API for the token list up to top 15 tokens
         num_tokens = 15
         currency = 'usd'
-        source_list = f"https://api.coingecko.com/api/v3/coins/markets?vs_currency={currency}&order=market_cap_desc&per_page={num_tokens}&page={page}&sparkline=false"
+        source_list = f"https://api.coingecko.com/api/v3/coins/markets?vs_currency={currency}&order=market_cap_desc&per_page={num_tokens}&page={page}&sparkline=false&x_cg_demo_api_key={coingecko_key}"
         response = requests.get(source_list)
         return json.loads(response.content)
 
@@ -152,6 +156,7 @@ class MarketcapPageView(TemplateView):
                     [self.Page(num, num) for num in range(page_num - page_margin, page_num + page_margin + 1)] + \
                     [self.Page(page_num + 1, '»')]
 
+        print(asset)
         for index, _ in enumerate(asset):
             token_list.append(self.TokenAPI(index=index, request=asset, mockup=False))
 
