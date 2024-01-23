@@ -18,18 +18,22 @@ class UserRegistrationForm(UserCreationForm):
         label="Password",
         widget=PasswordInput(attrs={
             'class': 'shadow rounded w-full py-2 px-3 text-white bg-[#01013D]/50 border border-[#6F7CF1] leading-tight',
-            'type': 'password', 
+            'type': 'password',
             'align': 'center',
-            'autocomplete': 'new-password'
+            'autocomplete': 'new-password',
+            'required': 'true',
+            'minlength': 10
             }),
     )
     password2 = CharField(
         label="Confirm password",
         widget=PasswordInput(attrs={
             'class': 'shadow rounded w-full py-2 px-3 text-white bg-[#01013D]/50 border border-[#6F7CF1] leading-tight',
-            'type': 'password', 
+            'type': 'password',
             'align': 'center',
-            'autocomplete': 'new-password'
+            'autocomplete': 'new-password',
+            'required': 'true',
+            'minlength': 10
             }),
     )
     class Meta:

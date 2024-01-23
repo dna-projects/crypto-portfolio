@@ -116,22 +116,55 @@
         }
     }
 
-    // Search
-    const searchBtn = document.querySelector('#search-btn');
-    searchBtn.addEventListener('input', searchCoinGecko);
-    function searchCoinGecko(ev) {
-        let elem = ev.target
-        let searchInput = elem.value
-        const apiCall = `https://api.coingecko.com/api/v3/search?query=${searchInput}`
-        fetch(apiCall).then((response) => response.json()).then((data) => updateTokenTable(data))
-    }
-
-    // 
+    //
     function updateTokenTable(data) {
         console.log(data.coins)
         const tokenTable = document.querySelector('#token-table');
         tokenTable.innerHTML = `<div>${data.coins[0]}</div>`
     }
+
+    // Add a delay before a function will run (does not backlog function calls)
+    const debounce = (func, delay) => {
+        let timer; // keep track of current timer
+
+        return (...args) => {
+        clearTimeout(timer);
+        // start the timer
+        timer = setTimeout(() => {
+            func(...args);
+        }, delay);
+        };
+    };
+
+    // Prevent space from being first input
+    function validate(ev) {
+        // ^  - start of sentence
+        // \s - space character
+        if(/^\s/.test(ev.target.value))
+            ev.target.value = '';
+    }
+
+    // Wait for user to input >=2 characters, then run the
+    // backend request
+    const searchBtn = document.querySelector('#search-btn');
+    searchBtn.addEventListener("input", validate)
+    searchBtn.addEventListener("keyup", debounce(ev => {
+        if (ev.target.value.length >= 2) {
+            console.log("rabble rabble")
+            // Pass ev.value to the backend
+        }
+
+    }, 350));
+
+    // Search
+
+    // searchBtn.addEventListener('input', searchCoinGecko);
+    // function searchCoinGecko(ev) {
+    //     let searchInput = elem.value
+    //     const apiCall = `https://api.coingecko.com/api/v3/search?query=${searchInput}`
+    //     fetch(apiCall).then((response) => response.json()).then((data) => updateTokenTable(data))
+    // }
+
 
     // searchBtn.addEventListener('click', showSearch);
 
