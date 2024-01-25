@@ -71,7 +71,7 @@ class PortfolioEditView(DeletionMixin, UpdateView):
     form_class = EditTokenForm
     success_url = reverse_lazy('portfolio')
 
-    # Create a get method that uses the current object's model name 
+    # Create a get method that uses the current object's model name
     # to display in the template
     # def get(self, request):
     #   current_asset = # get object somehow
@@ -163,8 +163,18 @@ class MarketcapPageView(TemplateView):
         return render(request, self.template_name, {'token_list': token_list, 'pages': pages, 'active_page': page_num})
 
     def post(self, request, *args, **kwargs):
-        page=request.POST['page-input']
-        return redirect('mc-update', page_num=page)
+        print(request.POST)
+        if 'page-input' in request.POST:
+            print(request.POST)
+            return redirect('mc-update', page_num=request.POST['page-input'])
+        elif 'search-input' in request.POST:
+            search_input = request.POST['search-input']
+            source_list = f'https://api.coingecko.com/api/v3/search?query=${search_input}&x_cg_demo_api_key={coingecko_key}'
+            # Make a request to the API and handle the response accordingly
+            response = requests.get(source_list)
+            print(response.content)
+            # Handle the API response here
+            return json.loads(response.content)
 
 class MarketcapStatsPageView(TemplateView):
     template_name = 'mc-coin-stats.html'
