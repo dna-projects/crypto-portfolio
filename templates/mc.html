@@ -6,10 +6,10 @@
 <div class="flex justify-between">
     <div class="pb-5 text-2xl text-[#FFFDC9] fontKanit">Cryptocurrency prices by Market Cap</div>
         <form method="post" id="search-form">
-            <button id="search-btn">
+            <div id="search-btn">
                 {% csrf_token %}
                 <input id="search-input" name="search-input" placeholder="Search" class="bg-blue-100 w-32 text-white fontMavenpro bg-opacity-20 rounded-lg focus:outline-0 focus:w-60 duration-500 py-1 pl-2 mb-5 mr-1">
-            </button>
+            </div>
         </form>
         <!-- Search Modal -->
         <!-- <div id="search-modal" class="hidden overflow-y-auto overflow-x-hidden absolute -right-4 z-10 w-56" aria-modal="true">
@@ -147,20 +147,19 @@
 
     // Search
     async function sendRequestForTokens(token_query) {
-        let response = await fetch('', {
+        let form = document.querySelector('#search-form');
+        let formData = new FormData(form);
+        let csrfToken = '{{csrf_token}}';
+        let response = await fetch('/mc', {
         method: 'POST',
         credentials: 'same-origin',
         headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'X-CSRFToken': csrfToken
+            'X-CSRFToken': csrfToken,
         },
-        body: JSON.stringify({
-            'csrfmiddlewaretoken': csrfToken,
-            'token_query': token_query
-        })
+        body: formData,
         });
         let json = await response.json();
+        console.log(json)
         return json;
     }
 
@@ -176,8 +175,8 @@
     searchBtn.addEventListener("keyup", debounce(ev => {
         if (ev.target.value.length >= 2) {
             // Pass ev.value to the backend
-            // sendRequestForTokens(ev.target.value)
-            document.forms["search-form"].submit();
+            sendRequestForTokens(ev.target.value)
+            // document.forms["search-form"].submit();
         }
     }, 300));
 

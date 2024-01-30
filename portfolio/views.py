@@ -8,6 +8,7 @@ from django.views.generic.edit import DeletionMixin
 from portfolio.forms import EditTokenForm, UserRegistrationForm, UserLoginForm, NewTokenForm
 from portfolio.models import AssetEntry
 from django.db.models import Sum
+from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 import requests
@@ -50,7 +51,6 @@ class PortfolioPageView(CreateView):
         url_tokens = f"https://api.coingecko.com/api/v3/coins/markets?vs_currency={currency}&order=market_cap_desc&per_page={num_tokens}&page=1&sparkline=false&x_cg_demo_api_key={coingecko_key}"
         response = requests.get(url_tokens)
         asset = json.loads(response.content)
-        print(asset)
 
         tokens = {}
         for index, _ in enumerate(asset):
@@ -124,6 +124,23 @@ class MarketcapPageView(TemplateView):
             mockup_mc = 15069857156
             self.marketcap = f"{mockup_mc:,}"
 
+    class TokenSearch:
+        def __init__(self, data, index):
+            asset = data
+            self.name = asset["coins"][index]['name']
+            self.symbol = asset["coins"][index]['symbol']
+            self.rank = asset["coins"][index]['market_cap_rank']
+            # self.price = asset[index]['current_price']
+            # if self.price > 0.01:
+            #     self.price = f"${self.price:,.2f}"
+            # else:
+            #     self.price = f"${self.price:.7f}"
+            # # self.one_hour_performance = f"{asset[index]['price_change_percentage_1h_in_currency']:.1f}%"
+            # self.one_day_performance = asset[index]['price_change_percentage_24h']
+            # # self.seven_day_performance = f"{asset[index]['price_change_percentage_7d']:.1f}%"
+            # self.one_day_volume = f"{asset[index]['total_volume']:,}"
+            # self.marketcap = f"{asset[index]['market_cap']:,}"
+
     def call_coin_gecko(self, page=1):
         # Make request to coin gecko API for the token list up to top 15 tokens
         num_tokens = 15
@@ -156,25 +173,29 @@ class MarketcapPageView(TemplateView):
                     [self.Page(num, num) for num in range(page_num - page_margin, page_num + page_margin + 1)] + \
                     [self.Page(page_num + 1, '»')]
 
-        print(asset)
         for index, _ in enumerate(asset):
             token_list.append(self.TokenAPI(index=index, request=asset, mockup=False))
 
         return render(request, self.template_name, {'token_list': token_list, 'pages': pages, 'active_page': page_num})
 
     def post(self, request, *args, **kwargs):
-        print(request.POST)
+        token_list = []
         if 'page-input' in request.POST:
-            print(request.POST)
             return redirect('mc-update', page_num=request.POST['page-input'])
         elif 'search-input' in request.POST:
             search_input = request.POST['search-input']
-            source_list = f'https://api.coingecko.com/api/v3/search?query=${search_input}&x_cg_demo_api_key={coingecko_key}'
+            source_list = f'https://api.coingecko.com/api/v3/search?query={search_input}&x_cg_demo_api_key={coingecko_key}'
             # Make a request to the API and handle the response accordingly
             response = requests.get(source_list)
-            print(response.content)
+            token_data =response.json()
+            # print(token_data["coins"][0])
+            for index, _ in enumerate(token_data['coins']):
+                token_list.append(self.TokenSearch(index=index, data=token_data))
+            # print(token_list)
             # Handle the API response here
-            return json.loads(response.content)
+            return render(request, self.template_name, {'token_list': token_list})
+            # We can serialize the token_list so the json response knows how to send it back to the frontend
+            # return JsonResponse(token_list, safe=False)
 
 class MarketcapStatsPageView(TemplateView):
     template_name = 'mc-coin-stats.html'
