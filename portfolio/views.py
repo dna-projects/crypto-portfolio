@@ -190,12 +190,9 @@ class MarketcapPageView(TemplateView):
             token_data =response.json()
             # print(token_data["coins"][0])
             for index, _ in enumerate(token_data['coins']):
-                token_list.append(self.TokenSearch(index=index, data=token_data))
-            # print(token_list)
+                token_list.append(vars(self.TokenSearch(index=index, data=token_data)))
             # Handle the API response here
-            return render(request, self.template_name, {'token_list': token_list})
-            # We can serialize the token_list so the json response knows how to send it back to the frontend
-            # return JsonResponse(token_list, safe=False)
+            return JsonResponse(token_list, safe=False)
 
 class MarketcapStatsPageView(TemplateView):
     template_name = 'mc-coin-stats.html'

@@ -49,7 +49,7 @@
         </div>
         <div id="token-table" class="table-row-group bg-[#230679]/30 text-lg fontMavenpro">
             {% for token in token_list%}
-            <div class="table-row hover:bg-[#17014F]/60 tracking-wider">
+            <div class="token-list table-row hover:bg-[#17014F]/60 tracking-wider">
                 <div class="table-cell p-2">{{ token.rank }}</div>
                 <div class="table-cell p-2">{{ token.name }}</div>
                 <div class="table-cell p-2">{{ token.price }}</div>
@@ -69,7 +69,7 @@
                 <div class="table-cell p-2">${{ token.one_day_volume }}</div>
                 <div class="table-cell p-2">${{ token.marketcap }}</div>
             </div>
-            {% endfor %}
+            {% endfor %} <!-- Toggle table for search -->
         </div>
     </div>
 </div>
@@ -117,11 +117,49 @@
         }
     }
 
-    //
+    // Update table
     function updateTokenTable(data) {
-        console.log(data.coins)
-        const tokenTable = document.querySelector('#token-table');
-        tokenTable.innerHTML = `<div>${data.coins[0]}</div>`
+        const tokenList = document.querySelectorAll('.token-list');
+        tokenList.forEach(token => token.classList.add("collapse"));
+
+        document.querySelectorAll(".search-list").forEach(token => token.remove()) // Reset search list
+
+        data.forEach(token => {
+            const rowElem = document.createElement("div")
+            rowElem.classList.add("search-list", "table-row", "hover:bg-[#17014F]/60", "tracking-wider")
+            const rowHtml = `
+                <div id="token-rank" class="table-cell p-2">${token["rank"]}</div>
+                <div id="token-name" class="table-cell p-2">${token["name"]}</div>
+                <div id="token-price" class="table-cell p-2"></div>
+                <!-- <div class="table-cell p-2">{{ token.one_hour_performance }}</div> -->
+
+                <!-- Negative performance -->
+                <!-- {% if token.one_day_performance < 0 %}
+                    <div class="table-cell p-2 text-red-500">
+                        {{ token.one_day_performance|floatformat:"2g" }}%
+                    </div> -->
+
+                <!-- Positive performance -->
+                <!-- {% elif token.one_day_performance >= 0 %}
+                    <div class="table-cell p-2 text-lime-400">
+                        +{{ token.one_day_performance|floatformat:"2g" }}%
+                    </div>
+                {% endif %} -->
+
+                <!-- <div class="table-cell p-2">{{ token.seven_day_performance }}</div> -->
+                <div id="token-one-day-volume" class="table-cell p-2"></div>
+                <div id="token-marketcap" class="table-cell p-2"></div>
+            `
+            rowElem.innerHTML = rowHtml
+            document.querySelector("#token-table").appendChild(rowElem)
+        })
+    }
+
+    // Reset table between searches
+    const resetTable = () => {
+        const tokenList = document.querySelectorAll('.token-list');
+        tokenList.forEach(token => token.classList.remove("collapse"));
+        document.querySelectorAll(".search-list").forEach(token => token.remove()) // Reset search list
     }
 
     // Add a delay before a function will run (does not backlog function calls)
@@ -160,7 +198,7 @@
         });
         let json = await response.json();
         console.log(json)
-        return json;
+        updateTokenTable(json)
     }
 
     // Prevent default when clicking search box
@@ -168,15 +206,18 @@
         ev.preventDefault()
     });
 
-    // Wait for user to input >=2 characters, then run the
+    // Wait for user to input >=3 characters, then run the
     // backend request
     const searchBtn = document.querySelector('#search-input');
     searchBtn.addEventListener("input", validate)
     searchBtn.addEventListener("keyup", debounce(ev => {
-        if (ev.target.value.length >= 2) {
+        if (ev.target.value.length >= 3) {
             // Pass ev.value to the backend
             sendRequestForTokens(ev.target.value)
             // document.forms["search-form"].submit();
+        }
+        else if (ev.target.value.length === 0) {
+            resetTable()
         }
     }, 300));
 
