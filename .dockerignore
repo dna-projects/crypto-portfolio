@@ -1,0 +1,13 @@
+__pycache__
+*.log
+*.pot
+*.pyc
+*.pyo
+*.pyd
+.Python
+.env
+venv
+pip-log.txt
+pip-delete-this-directory.txt
+.git
+Dockerfile
