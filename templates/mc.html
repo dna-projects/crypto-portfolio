@@ -188,7 +188,7 @@
         let form = document.querySelector('#search-form');
         let formData = new FormData(form);
         let csrfToken = '{{csrf_token}}';
-        let response = await fetch('/mc', {
+        let response = await fetch('', {
         method: 'POST',
         credentials: 'same-origin',
         headers: {
